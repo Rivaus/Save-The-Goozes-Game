@@ -17,6 +17,9 @@ public:
 	void plays();
 	void update(float deltaTime);
 
+private :
+	void initPhysics(tmx::Map const& map);
+
 private:
 	std::array<std::unique_ptr<MapLayer>, 2> _layers;
 	std::string _name;
