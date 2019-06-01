@@ -22,7 +22,7 @@ int monMainLucas()
 	window.setFramerateLimit(60);
 	//aled ca marche pas ici
 	b2World world(b2Vec2{ 0, 0 });
-	Player player(400.0f,5,world);
+	Player player(400.0f,5,world,"Alfonso");
 
 	sf::Clock globalClock;
 	float deltaTime = 0.0f;

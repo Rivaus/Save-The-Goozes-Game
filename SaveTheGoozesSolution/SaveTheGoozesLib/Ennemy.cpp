@@ -2,8 +2,8 @@
 #include "Ennemy.h"
 
 
-Ennemy::Ennemy(int pv, float speed, b2World& world) :
-	Character(pv, speed, world)
+Ennemy::Ennemy(int pv, float speed, b2World& world, std::string textureName) :
+	Character(pv, speed, world,textureName)
 {
 }
 

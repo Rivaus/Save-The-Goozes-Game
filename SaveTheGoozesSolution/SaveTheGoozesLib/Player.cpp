@@ -3,8 +3,8 @@
 
 
 
-Player::Player(float speed,int pv,  b2World& world):
-	Character(speed, pv,  world)
+Player::Player(float speed,int pv,  b2World& world, std::string textureName):
+	Character(speed, pv,  world,textureName)
 {
 }
 

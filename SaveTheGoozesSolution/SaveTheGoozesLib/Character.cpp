@@ -3,10 +3,10 @@
 #include "InputManager.h"
 
 
-Character::Character(float speed, int pv, b2World& world) : 
+Character::Character(float speed, int pv, b2World& world, std::string textureName) : 
 	speed(speed), pv(pv), sprite()
 {
-	auto texture = AssetManager::getInstance()->getTexture("Alfonso");
+	auto texture = AssetManager::getInstance()->getTexture(textureName);
 	sprite.setTexture(*texture);
 	sprite.setPosition(0, 0);
 	sprite.setOrigin(texture->getSize().x / 2, texture->getSize().x / 2);
