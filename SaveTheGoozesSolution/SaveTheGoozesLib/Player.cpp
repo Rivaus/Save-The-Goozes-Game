@@ -4,18 +4,14 @@
 #include "Utils.h"
 
 
-Player::Player(float speed)
+Player::Player(float speed,int pv):
+	Character(speed, pv)
 {
-	this->speed = speed;
 	body.setSize(sf::Vector2f(100.0f, 100.0f));
 	body.setPosition(200.0f, 200.0f);
 	body.setFillColor(sf::Color::Green);
 }
 
-
-Player::~Player()
-{
-}
 
 void Player::update(float deltaTime)
 {

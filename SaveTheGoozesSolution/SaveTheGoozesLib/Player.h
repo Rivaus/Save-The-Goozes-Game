@@ -1,17 +1,16 @@
 #pragma once
 #include "Character.h"
 
-class Player : Character
+class Player : public Character
 {
 public:
-	Player(float speed);
+	Player(float speed, int pv); 
 	~Player();
 
 	void update(float deltaTime);
 	void draw(sf::RenderWindow& window);
 
 private:
-	float speed;
 	sf::RectangleShape body;
 };
 

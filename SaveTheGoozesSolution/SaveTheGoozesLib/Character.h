@@ -6,15 +6,11 @@ class Character
 {
 
 public:
-	Character() : rect(sf::Vector2f(200, 200)) {
-		rect.setFillColor(sf::Color::Red);
-	}
-
-	sf::RectangleShape& getRectangle() {
-		return rect;
-	}
+	Character(float speed, int pv) : speed(speed), pv(pv) {}
 
 private:
-	sf::RectangleShape rect;
+	int pv;
+	float speed;
+	
 };
 
