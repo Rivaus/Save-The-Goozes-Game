@@ -9,7 +9,9 @@
 
 #include "../SaveTheGoozesLib/Player.h"
 #include "../SaveTheGoozesLib/Level.h"
+#include <Box2D/Box2D.h>
 #include "testLucas.h"
+
 
 int monMainLucas()
 {
@@ -18,8 +20,9 @@ int monMainLucas()
 
 	sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "SFML works!");
 	window.setFramerateLimit(60);
-
-	Player player(400.0f);
+	//aled ca marche pas ici
+	b2World world(b2Vec2{ 0, 0 });
+	Player player(400.0f,5,world);
 
 	sf::Clock globalClock;
 	float deltaTime = 0.0f;
