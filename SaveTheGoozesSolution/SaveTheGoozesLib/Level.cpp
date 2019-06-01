@@ -12,7 +12,8 @@
 Level::Level(std::string const name, std::string const mapPath, sf::RenderWindow& window) :
 	_name(name), _world(b2Vec2{ 0, 0 }),
 	_window(window), _clock(),
-	_view(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(window.getSize().x, window.getSize().y))
+	_view(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(window.getSize().x, window.getSize().y)),
+	playerTest(_world)
 {
 
 	// On charge la TiledMap
@@ -76,17 +77,21 @@ void Level::plays() {
 
 		_window.clear();
 		_window.draw(*_layers[0]);
+		playerTest.draw(_window);
 		_window.display();
 	}
 }
 
 void Level::update(float deltaTime) {
-	InputManager* inputMng = InputManager::getInstance();
+	_world.Step(1 / 60.f, 8, 3);
+	/*InputManager* inputMng = InputManager::getInstance();
 	sf::Vector2f direction(inputMng->getAxis("Horizontal"), inputMng->getAxis("Vertical"));
 
 	direction = Utils::normalize(direction) * deltaTime * 1.0f;
 	//std::cout << "Axis : " << direction.x << "; " << direction.y << std::endl;
-
-	_view.move(direction);
+	*/
+	//_view.move(direction);
+	_view.setCenter(playerTest.getPosition());
 	_window.setView(_view);
+	playerTest.update(deltaTime);
 }
