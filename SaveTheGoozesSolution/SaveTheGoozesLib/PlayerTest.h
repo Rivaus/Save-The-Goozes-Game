@@ -45,7 +45,6 @@ public:
 		body->SetLinearVelocity(direction);
 		//body->ApplyForce(direction, b2Vec2(0, 0), true);
 		//body->SetTransform(b2Vec2(body->GetPosition().x + direction.x, body->GetPosition().y + direction.y), 0);
-		std::cout << "Body : " << body->GetPosition().x << "; " << body->GetPosition().y << std::endl;
 
 		shape.setPosition(sf::Vector2f(body->GetPosition().x, body->GetPosition().y));
 		sprite.setPosition(sf::Vector2f(body->GetPosition().x, body->GetPosition().y));
