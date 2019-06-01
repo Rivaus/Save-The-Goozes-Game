@@ -153,6 +153,7 @@
   <ItemGroup>
     <ClInclude Include="pch.h" />
     <ClInclude Include="testLucas.h" />
+    <ClInclude Include="testQuentin.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp" />

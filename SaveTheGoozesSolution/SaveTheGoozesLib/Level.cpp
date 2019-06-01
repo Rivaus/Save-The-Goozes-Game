@@ -14,6 +14,8 @@ Level::Level(std::string const name, std::string const mapPath, sf::RenderWindow
 	_window(window), _clock(),
 	_view(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(window.getSize().x, window.getSize().y))
 {
+
+	// On charge la TiledMap
 	tmx::Map map;
 	if (!map.load(mapPath)) {
 		std::cout << "Unfortunately, the tiled map was not successfully loaded.";
