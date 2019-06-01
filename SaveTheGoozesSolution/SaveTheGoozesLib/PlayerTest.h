@@ -5,16 +5,25 @@
 
 #include "InputManager.h"
 #include "Utils.h"
+#include "AssetManager.h"
 
 
 class PlayerTest
 {
 public:
 	PlayerTest(b2World& world) :
-		shape(sf::Vector2f(100, 100)) {
+		shape(sf::Vector2f(100, 100)),
+		sprite()
+		{
 		shape.setFillColor(sf::Color::Red);
 		shape.setPosition(sf::Vector2f(0, 0));
 		shape.setOrigin(50, 50);
+
+		auto texture = AssetManager::getInstance()->getTexture("Alfonso");
+		sprite.setTexture(*texture);
+		sprite.setPosition(0, 0);
+		sprite.setOrigin(texture->getSize().x / 2, texture->getSize().x / 2);
+
 
 		//Initialisation de la physique du player
 		b2BodyDef bodyDef;
@@ -23,7 +32,7 @@ public:
 		body = world.CreateBody(&bodyDef);
 		b2FixtureDef fixDef;
 		b2PolygonShape shape;
-		shape.SetAsBox(50, 50);
+		shape.SetAsBox(texture->getSize().x / 2, texture->getSize().x / 2);
 		fixDef.shape = &shape;
 		fixDef.density = 0;
 		body->CreateFixture(&fixDef);
@@ -39,10 +48,12 @@ public:
 		std::cout << "Body : " << body->GetPosition().x << "; " << body->GetPosition().y << std::endl;
 
 		shape.setPosition(sf::Vector2f(body->GetPosition().x, body->GetPosition().y));
+		sprite.setPosition(sf::Vector2f(body->GetPosition().x, body->GetPosition().y));
 	}
 
 	void draw(sf::RenderWindow& window) {
 		window.draw(shape);
+		window.draw(sprite);
 	}
 
 	sf::Vector2f getPosition() {
@@ -52,5 +63,6 @@ public:
 private:
 	sf::RectangleShape shape;
 	b2Body* body;
+	sf::Sprite sprite;
 };
 
