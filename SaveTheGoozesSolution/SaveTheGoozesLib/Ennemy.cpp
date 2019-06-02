@@ -2,9 +2,9 @@
 #include "Ennemy.h"
 
 
-Ennemy::Ennemy(int pv, float speed, b2World& world, 
+Ennemy::Ennemy(int pv, float speed, b2World& world, int boxWidth, int boxHeight, int boxOffset,
 	std::string textureName , float positionX, float positionY) :
-	Character(pv, speed, world,textureName,positionX,positionY),
+	Character(pv, speed, world, boxWidth, boxHeight, boxOffset, textureName,positionX,positionY),
 	waypoints()
 {
 	indexWaypoint = 0;

@@ -3,8 +3,9 @@
 
 
 
-Character::Character(float speed, int pv, b2World& world, std::string textureName, float positionX , float positionY) :
-	speed(speed), pv(pv), sprite()
+Character::Character(float speed, int pv, b2World& world, int boxWidth, int boxHeight, int boxOffset, 
+		std::string textureName, float positionX , float positionY) :
+	speed(speed), pv(pv), sprite(), boxOffset(boxOffset)
 {
 	auto texture = AssetManager::getInstance()->getTexture(textureName);
 	sprite.setTexture(*texture);
@@ -19,7 +20,7 @@ Character::Character(float speed, int pv, b2World& world, std::string textureNam
 	body = world.CreateBody(&bodyDef);
 	b2FixtureDef fixDef;
 	b2PolygonShape shape;
-	shape.SetAsBox(texture->getSize().x / 2, texture->getSize().x / 2);
+	shape.SetAsBox(boxWidth / 2, boxHeight / 2);
 	fixDef.shape = &shape;
 	fixDef.density = 0;
 	body->CreateFixture(&fixDef);
@@ -27,7 +28,7 @@ Character::Character(float speed, int pv, b2World& world, std::string textureNam
 
 void Character::update(float deltaTime)
 {
-	sprite.setPosition(sf::Vector2f(body->GetPosition().x, body->GetPosition().y)); //ici le sprite suit le body
+	sprite.setPosition(sf::Vector2f(body->GetPosition().x, body->GetPosition().y - boxOffset)); //ici le sprite suit le body
 }
 
 void Character::draw(sf::RenderWindow& window)

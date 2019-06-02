@@ -14,8 +14,8 @@ Level::Level(std::string const name, std::string const mapPath, sf::RenderWindow
 	_name(name), _world(b2Vec2{ 0, 0 }),
 	_window(window), _clock(),
 	_view(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(window.getSize().x, window.getSize().y)),
-	player(400.0f, 10, _world,"Alfonso"),
-	ennemy(400.0f, 10, _world, "Bertrand", 500.0f, 500.0f)
+	player(400.0f, 10, _world, 134, 97, 32, "Alfonso"),
+	ennemy(400.0f, 10, _world,281, 230, 0, "Bertrand", 500.0f, 500.0f)
 {
 	//std::cout << "vitesse = " << player.speed << std::endl;
 	// On charge la TiledMap
