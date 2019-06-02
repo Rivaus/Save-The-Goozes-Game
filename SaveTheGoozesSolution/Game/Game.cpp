@@ -10,6 +10,7 @@ int main()
 
 	auto assetManager = AssetManager::getInstance();
 	assetManager->loadTexture("Alfonso", "Assets/Sprites/Alfonso.png");
+	assetManager->loadTexture("Bernard", "Assets/Sprites/Bernard.png");
 
 	//monMainLucas();
 	monMainQuentin();
