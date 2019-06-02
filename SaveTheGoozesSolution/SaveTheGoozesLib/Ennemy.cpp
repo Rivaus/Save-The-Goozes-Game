@@ -2,12 +2,16 @@
 #include "Ennemy.h"
 
 
-Ennemy::Ennemy(int pv, float speed, b2World& world, std::vector<sf::Vector2f> waypoints, 
+Ennemy::Ennemy(int pv, float speed, b2World& world, 
 	std::string textureName , float positionX, float positionY) :
 	Character(pv, speed, world,textureName,positionX,positionY),
-	waypoints(waypoints)
+	waypoints()
 {
 	indexWaypoint = 0;
+}
+
+void Ennemy::addWaypoint(sf::Vector2f const& waypoint) {
+	waypoints.push_back(waypoint);
 }
 
 
