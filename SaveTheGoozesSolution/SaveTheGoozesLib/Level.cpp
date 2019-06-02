@@ -6,16 +6,20 @@
 #include <array>
 #include <tmxlite/Map.hpp>
 #include <vector>
+#include <jsoncons/json.hpp>
+#include <fstream>  
+
+using namespace jsoncons;
 
 #include "InputManager.h"
 #include "Utils.h"
 
-Level::Level(std::string const name, std::string const mapPath, sf::RenderWindow& window) :
+Level::Level(std::string const& name, std::string const& mapPath, std::string const& enemiesFilePath, sf::RenderWindow& window) :
 	_name(name), _world(b2Vec2{ 0, 0 }),
 	_window(window), _clock(),
 	_view(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(window.getSize().x, window.getSize().y)),
 	player(400.0f, 10, _world, 134, 97, 32, "Alfonso"),
-	ennemy(400.0f, 10, _world,281, 230, 0, "Bertrand", 500.0f, 500.0f)
+	_enemies()
 {
 	//std::cout << "vitesse = " << player.speed << std::endl;
 	// On charge la TiledMap
@@ -28,8 +32,7 @@ Level::Level(std::string const name, std::string const mapPath, sf::RenderWindow
 	initPhysics(map);
 
 	//On initialise les ennemis
-	ennemy.addWaypoint(sf::Vector2f(200, 400));
-	ennemy.addWaypoint(sf::Vector2f(600, 400));
+	initEnemies(enemiesFilePath);
 }
 
 
@@ -59,6 +62,30 @@ void Level::initPhysics(tmx::Map const& map) {
 }
 
 
+void Level::initEnemies(std::string const& enemiesFilePath) {
+	std::ifstream file(enemiesFilePath);
+	jsoncons::json levelInitializer = jsoncons::json::parse(file);
+
+	for (const auto& enemy : levelInitializer.array_range())
+	{
+		std::string name = enemy["name"].as<std::string>();
+		float speed = enemy["speed"].as<float>();
+		int pv = enemy["pv"].as_int();
+		sf::Vector2f startPosition{ enemy["start_position"]["x"].as<float>(), enemy["start_position"]["y"].as<float>() };
+		std::cout << name << " de vitesse " << speed << " a " << pv << std::endl;
+
+		Ennemy e(pv, speed, _world, 281, 230, 0, "Bertrand", startPosition.x, startPosition.y);
+
+		for (const auto& waypoint : enemy["waypoints"].array_range()) {
+			e.addWaypoint(sf::Vector2f{ waypoint["x"].as<float>(), waypoint["x"].as<float>() });
+		}
+
+		_enemies.push_back(e);
+	}
+	file.close();
+}
+
+
 void Level::plays() {
 
 	while (_window.isOpen())
@@ -83,22 +110,19 @@ void Level::plays() {
 		_window.clear();
 		_window.draw(*_layers[0]);
 		player.draw(_window);
-		ennemy.draw(_window);
+		for (auto const& e : _enemies) {
+			e.draw(_window);
+		}
 		_window.display();
 	}
 }
 
 void Level::update(float deltaTime) {
 	_world.Step(1 / 60.f, 6, 2);
-	/*InputManager* inputMng = InputManager::getInstance();
-	sf::Vector2f direction(inputMng->getAxis("Horizontal"), inputMng->getAxis("Vertical"));
-
-	direction = Utils::normalize(direction) * deltaTime * 1.0f;
-	//std::cout << "Axis : " << direction.x << "; " << direction.y << std::endl;
-	*/
-	//_view.move(direction);
 	_view.setCenter(player.getPosition());
 	_window.setView(_view);
 	player.update(deltaTime);
-	ennemy.update(deltaTime);
+	for (auto& e : _enemies) {
+		e.update(deltaTime);
+	}
 }

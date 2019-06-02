@@ -31,7 +31,7 @@ void Character::update(float deltaTime)
 	sprite.setPosition(sf::Vector2f(body->GetPosition().x, body->GetPosition().y - boxOffset)); //ici le sprite suit le body
 }
 
-void Character::draw(sf::RenderWindow& window)
+void Character::draw(sf::RenderWindow& window) const
 {
 	window.draw(sprite);
 }

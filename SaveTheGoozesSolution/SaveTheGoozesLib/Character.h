@@ -17,7 +17,7 @@ public:
 	
 	sf::Vector2f getPosition();
 	virtual void update(float deltaTime);
-	void draw(sf::RenderWindow& window);
+	void draw(sf::RenderWindow& window) const;
 	float speed;
 
 private:

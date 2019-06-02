@@ -15,13 +15,14 @@
 class Level
 {
 public:
-	Level(std::string name, std::string mapPath, sf::RenderWindow& window);
+	Level(std::string const& name, std::string const& mapPath, std::string const& enemiesFilePath, sf::RenderWindow& window);
 
 	void plays();
 	void update(float deltaTime);
 
 private :
 	void initPhysics(tmx::Map const& map);
+	void initEnemies(std::string const& enemiesFilePath);
 
 private:
 	std::array<std::unique_ptr<MapLayer>, 2> _layers;
@@ -31,7 +32,7 @@ private:
 	sf::View _view;
 	sf::Clock _clock;
 	Player player;
-	Ennemy ennemy;
+	std::vector<Ennemy> _enemies;
 	//std::vector<std::unique_ptr<GameObject>> gameobjects;
 };
 
