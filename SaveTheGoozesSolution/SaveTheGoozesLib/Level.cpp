@@ -8,6 +8,7 @@
 #include <vector>
 #include <jsoncons/json.hpp>
 #include <fstream>  
+#include <algorithm>
 
 using namespace jsoncons;
 
@@ -82,8 +83,9 @@ void Level::initEnemies(std::string const& enemiesFilePath) {
 
 		for (const auto& waypoint : enemy["waypoints"].array_range()) {
 			e->addWaypoint(sf::Vector2f{ waypoint["x"].as<float>(), waypoint["x"].as<float>() });
+			std::cout << name << " et j'ajoute un waypoint " << std::endl;
 		}
-
+		
 		_characters.push_back(std::move(e));
 	}
 	file.close();
@@ -111,6 +113,10 @@ void Level::plays() {
 
 		_window.clear();
 		_window.draw(*_layers[0]);
+
+		/*std::sort(_characters.begin(), _characters.end(), [](auto& charA, auto& charB) {
+			return charA->getPosition().y < charB->getPosition().y;
+			});*/
 
 		for (auto const& c : _characters) {
 			c->draw(_window);

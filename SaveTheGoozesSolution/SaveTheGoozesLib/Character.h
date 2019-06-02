@@ -25,8 +25,9 @@ private:
 	sf::Sprite sprite;
 	sf::RectangleShape shape;
 	int boxOffset;
+	
 protected:
 	b2Body* body;
-	
+	bool isFflipped = false;
 };
 

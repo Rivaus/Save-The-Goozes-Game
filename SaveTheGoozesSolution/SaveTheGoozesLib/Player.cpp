@@ -11,6 +11,7 @@ Player::Player(float speed,int pv,  b2World& world, int boxWidth, int boxHeight,
 
 void Player::update(float deltaTime) {
 	InputManager* inputMng = InputManager::getInstance();
+
 	b2Vec2 direction(inputMng->getAxis("Horizontal"), inputMng->getAxis("Vertical"));
 	direction = Utils::normalize(direction);
 	direction *= deltaTime * speed;
