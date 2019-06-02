@@ -18,8 +18,7 @@ Level::Level(std::string const& name, std::string const& mapPath, std::string co
 	_name(name), _world(b2Vec2{ 0, 0 }),
 	_window(window), _clock(),
 	_view(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(window.getSize().x, window.getSize().y)),
-	player(400.0f, 10, _world, 134, 97, 32, "Alfonso"),
-	_enemies()
+	_characters()
 {
 	//std::cout << "vitesse = " << player.speed << std::endl;
 	// On charge la TiledMap
@@ -30,6 +29,10 @@ Level::Level(std::string const& name, std::string const& mapPath, std::string co
 	_layers[0] = std::make_unique<MapLayer>(map, 0);
 
 	initPhysics(map);
+
+	auto playerPtr = std::make_unique<Player>(400.0f, 10, _world, 134, 97, 32, "Alfonso");
+	player = playerPtr.get();
+	_characters.push_back(std::move(playerPtr));
 
 	//On initialise les ennemis
 	initEnemies(enemiesFilePath);
@@ -68,19 +71,20 @@ void Level::initEnemies(std::string const& enemiesFilePath) {
 
 	for (const auto& enemy : levelInitializer.array_range())
 	{
-		std::string name = enemy["name"].as<std::string>();
-		float speed = enemy["speed"].as<float>();
-		int pv = enemy["pv"].as_int();
-		sf::Vector2f startPosition{ enemy["start_position"]["x"].as<float>(), enemy["start_position"]["y"].as<float>() };
-		std::cout << name << " de vitesse " << speed << " a " << pv << std::endl;
+		auto name = enemy["name"].as<std::string>();
+		auto speed = enemy["speed"].as<float>();
+		auto pv = enemy["pv"].as_int();
+		auto textureName = enemy["texture"].as<std::string>();
 
-		Ennemy e(pv, speed, _world, 281, 230, 0, "Bertrand", startPosition.x, startPosition.y);
+		sf::Vector2f startPosition{ enemy["start_position"]["x"].as<float>(), enemy["start_position"]["y"].as<float>() };
+
+		auto e  = std::make_unique<Ennemy>(pv, speed, _world, 281, 230, 0, textureName, startPosition.x, startPosition.y);
 
 		for (const auto& waypoint : enemy["waypoints"].array_range()) {
-			e.addWaypoint(sf::Vector2f{ waypoint["x"].as<float>(), waypoint["x"].as<float>() });
+			e->addWaypoint(sf::Vector2f{ waypoint["x"].as<float>(), waypoint["x"].as<float>() });
 		}
 
-		_enemies.push_back(e);
+		_characters.push_back(std::move(e));
 	}
 	file.close();
 }
@@ -102,16 +106,14 @@ void Level::plays() {
 
 		sf::Time duration = _clock.getElapsedTime();
 		float deltaTime = duration.asSeconds();
-
 		_layers[0]->update(duration);
 		update(deltaTime);
 
-
 		_window.clear();
 		_window.draw(*_layers[0]);
-		player.draw(_window);
-		for (auto const& e : _enemies) {
-			e.draw(_window);
+
+		for (auto const& c : _characters) {
+			c->draw(_window);
 		}
 		_window.display();
 	}
@@ -119,10 +121,10 @@ void Level::plays() {
 
 void Level::update(float deltaTime) {
 	_world.Step(1 / 60.f, 6, 2);
-	_view.setCenter(player.getPosition());
-	_window.setView(_view);
-	player.update(deltaTime);
-	for (auto& e : _enemies) {
-		e.update(deltaTime);
+	for (auto& c : _characters) {
+		c->update(deltaTime);
 	}
+
+	_view.setCenter(player->getPosition());
+	_window.setView(_view);
 }

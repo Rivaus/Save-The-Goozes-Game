@@ -16,7 +16,7 @@ Character::Character(float speed, int pv, b2World& world, int boxWidth, int boxH
 	//Initialisation de la physique du character
 	b2BodyDef bodyDef;
 	bodyDef.type = b2_dynamicBody;
-	bodyDef.position.Set(0, 0);
+	bodyDef.position.Set(positionX, positionY);
 	body = world.CreateBody(&bodyDef);
 	b2FixtureDef fixDef;
 	b2PolygonShape shape;

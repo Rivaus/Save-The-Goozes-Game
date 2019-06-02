@@ -31,8 +31,9 @@ private:
 	sf::RenderWindow& _window;
 	sf::View _view;
 	sf::Clock _clock;
-	Player player;
-	std::vector<Ennemy> _enemies;
+	Player* player;
+	//std::vector<Ennemy> _enemies;
+	std::vector<std::unique_ptr<Character>> _characters;
 	//std::vector<std::unique_ptr<GameObject>> gameobjects;
 };
 
