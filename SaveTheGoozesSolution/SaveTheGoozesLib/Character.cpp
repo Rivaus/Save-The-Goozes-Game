@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "Character.h"
-#include "InputManager.h"
+
 
 
 Character::Character(float speed, int pv, b2World& world, std::string textureName, float positionX , float positionY) :
@@ -21,17 +21,12 @@ Character::Character(float speed, int pv, b2World& world, std::string textureNam
 	b2PolygonShape shape;
 	shape.SetAsBox(texture->getSize().x / 2, texture->getSize().x / 2);
 	fixDef.shape = &shape;
-	fixDef.density = 0;
+	fixDef.density = 1;
 	body->CreateFixture(&fixDef);
 }
 
 void Character::update(float deltaTime)
 {
-	InputManager* inputMng = InputManager::getInstance();
-	b2Vec2 direction(inputMng->getAxis("Horizontal"), inputMng->getAxis("Vertical"));
-	direction *= deltaTime * 100.0f;
-	body->SetLinearVelocity(direction);
-
 	sprite.setPosition(sf::Vector2f(body->GetPosition().x, body->GetPosition().y)); //ici le sprite suit le body
 }
 

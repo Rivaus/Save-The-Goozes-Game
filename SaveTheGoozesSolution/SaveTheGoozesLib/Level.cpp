@@ -15,7 +15,7 @@ Level::Level(std::string const name, std::string const mapPath, sf::RenderWindow
 	_view(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(window.getSize().x, window.getSize().y)),
 	player(400.0f,10,_world,"Alfonso")
 {
-
+	//std::cout << "vitesse = " << player.speed << std::endl;
 	// On charge la TiledMap
 	tmx::Map map;
 	if (!map.load(mapPath)) {
@@ -83,7 +83,7 @@ void Level::plays() {
 }
 
 void Level::update(float deltaTime) {
-	_world.Step(1 / 60.f, 8, 3);
+	_world.Step(1 / 60.f, 6, 2);
 	/*InputManager* inputMng = InputManager::getInstance();
 	sf::Vector2f direction(inputMng->getAxis("Horizontal"), inputMng->getAxis("Vertical"));
 

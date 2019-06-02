@@ -5,6 +5,7 @@
 #include "Utils.h"
 #include "AssetManager.h"
 #include <string>
+#include "InputManager.h"
 
 class Character
 {
@@ -14,16 +15,16 @@ public:
 	virtual ~Character() = default ;
 	
 	sf::Vector2f getPosition();
-	void update(float deltaTime);
+	virtual void update(float deltaTime);
 	void draw(sf::RenderWindow& window);
-
+	float speed;
 
 private:
 	int pv;
-	float speed;
-	b2Body* body;
 	sf::Sprite sprite;
 	sf::RectangleShape shape;
+protected:
+	b2Body* body;
 	
 };
 

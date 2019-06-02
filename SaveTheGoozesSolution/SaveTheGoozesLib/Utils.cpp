@@ -12,3 +12,16 @@ sf::Vector2f Utils::normalize(sf::Vector2f& vect) {
 	}
 
 }
+
+b2Vec2 Utils::normalize(b2Vec2& vect) {
+	float magnitude = sqrt(vect.x * vect.x + vect.y * vect.y);
+	if (magnitude != 0.0) {
+		vect.x /= magnitude;
+		vect.y /= magnitude;
+		return vect;
+	}
+	else {
+		return vect;
+	}
+
+}
