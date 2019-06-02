@@ -5,6 +5,7 @@
 #include <Box2D/Box2D.h>
 #include <array>
 #include <tmxlite/Map.hpp>
+#include <vector>
 
 #include "InputManager.h"
 #include "Utils.h"
@@ -13,7 +14,8 @@ Level::Level(std::string const name, std::string const mapPath, sf::RenderWindow
 	_name(name), _world(b2Vec2{ 0, 0 }),
 	_window(window), _clock(),
 	_view(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(window.getSize().x, window.getSize().y)),
-	player(400.0f,10,_world,"Alfonso")
+	player(400.0f, 10, _world,"Alfonso"),
+	ennemy(400.0f, 10, _world, std::vector<sf::Vector2f>{sf::Vector2f(200, 400), sf::Vector2f(600, 400)}, "Bertrand", 500.0f, 500.0f)
 {
 	//std::cout << "vitesse = " << player.speed << std::endl;
 	// On charge la TiledMap
@@ -78,6 +80,7 @@ void Level::plays() {
 		_window.clear();
 		_window.draw(*_layers[0]);
 		player.draw(_window);
+		ennemy.draw(_window);
 		_window.display();
 	}
 }
@@ -94,4 +97,5 @@ void Level::update(float deltaTime) {
 	_view.setCenter(player.getPosition());
 	_window.setView(_view);
 	player.update(deltaTime);
+	ennemy.update(deltaTime);
 }

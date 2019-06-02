@@ -6,6 +6,7 @@
 #include "SFMLOrthogonalLayer.hpp"
 
 #include "Player.h"
+#include "Ennemy.h"
 
 #include <array>
 #include <string>
@@ -30,6 +31,7 @@ private:
 	sf::View _view;
 	sf::Clock _clock;
 	Player player;
+	Ennemy ennemy;
 	//std::vector<std::unique_ptr<GameObject>> gameobjects;
 };
 

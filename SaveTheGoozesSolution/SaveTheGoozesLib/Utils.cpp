@@ -25,3 +25,7 @@ b2Vec2 Utils::normalize(b2Vec2& vect) {
 	}
 
 }
+
+float Utils::absoluteDistance(const b2Vec2& vect1,const sf::Vector2f& vect2) {
+	return sqrt((vect1.x - vect2.x)*(vect1.x - vect2.x) + (vect1.y - vect2.y)*(vect1.y - vect2.y));
+}

@@ -21,7 +21,7 @@ Character::Character(float speed, int pv, b2World& world, std::string textureNam
 	b2PolygonShape shape;
 	shape.SetAsBox(texture->getSize().x / 2, texture->getSize().x / 2);
 	fixDef.shape = &shape;
-	fixDef.density = 1;
+	fixDef.density = 0;
 	body->CreateFixture(&fixDef);
 }
 

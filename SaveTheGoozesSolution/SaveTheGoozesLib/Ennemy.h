@@ -9,6 +9,6 @@ public:
 	void update(float deltaTime) override;
 private:
 	std::vector<sf::Vector2f> waypoints;
-	sf::Vector2f waypoint;
+	int indexWaypoint;
 };
 
