@@ -161,6 +161,7 @@
     <ClInclude Include="PlayerTest.h" />
     <ClInclude Include="SFMLOrthogonalLayer.hpp" />
     <ClInclude Include="Utils.h" />
+    <ClInclude Include="WorldContactListener.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssetManager.cpp" />
@@ -177,6 +178,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="SaveTheGoozesLib.cpp" />
     <ClCompile Include="Utils.cpp" />
+    <ClCompile Include="WorldContactListener.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

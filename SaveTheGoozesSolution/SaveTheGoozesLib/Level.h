@@ -8,6 +8,8 @@
 #include "Player.h"
 #include "Ennemy.h"
 
+#include "WorldContactListener.h"
+
 #include <array>
 #include <string>
 
@@ -33,5 +35,6 @@ private:
 	sf::Clock _clock;
 	Player* player;
 	std::vector<std::unique_ptr<Character>> _characters;
+	WorldContactListener _contactListener;
 };
 

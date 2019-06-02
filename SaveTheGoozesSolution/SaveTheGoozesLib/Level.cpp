@@ -19,7 +19,8 @@ Level::Level(std::string const& name, std::string const& mapPath, std::string co
 	_name(name), _world(b2Vec2{ 0, 0 }),
 	_window(window), _clock(),
 	_view(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(window.getSize().x, window.getSize().y)),
-	_characters()
+	_characters(),
+	_contactListener()
 {
 	//std::cout << "vitesse = " << player.speed << std::endl;
 	// On charge la TiledMap
@@ -41,6 +42,10 @@ Level::Level(std::string const& name, std::string const& mapPath, std::string co
 
 
 void Level::initPhysics(tmx::Map const& map) {
+	// On initialise la gestion des collisions
+	_world.SetContactListener(&_contactListener);
+
+	// On ajoute des colliders à tous les "murs" de la map
 	b2BodyDef bodyDef;
 	bodyDef.type = b2_staticBody; //Elements qui ne bouge pas
 	b2FixtureDef fixDef;

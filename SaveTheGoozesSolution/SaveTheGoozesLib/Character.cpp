@@ -24,6 +24,7 @@ Character::Character(float speed, int pv, b2World& world, int boxWidth, int boxH
 	fixDef.shape = &shape;
 	fixDef.density = 0;
 	body->CreateFixture(&fixDef);
+	body->SetUserData(this);
 }
 
 void Character::update(float deltaTime)
