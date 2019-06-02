@@ -5,7 +5,7 @@
 
 #include "SFMLOrthogonalLayer.hpp"
 
-#include "PlayerTest.h"
+#include "Player.h"
 
 #include <array>
 #include <string>
@@ -29,7 +29,7 @@ private:
 	sf::RenderWindow& _window;
 	sf::View _view;
 	sf::Clock _clock;
-	PlayerTest playerTest;
+	Player player;
 	//std::vector<std::unique_ptr<GameObject>> gameobjects;
 };
 

@@ -3,21 +3,24 @@
 #include "InputManager.h"
 
 
-Character::Character(float speed, int pv, b2World& world, std::string textureName) : 
+Character::Character(float speed, int pv, b2World& world, std::string textureName, float positionX , float positionY) :
 	speed(speed), pv(pv), sprite()
 {
 	auto texture = AssetManager::getInstance()->getTexture(textureName);
 	sprite.setTexture(*texture);
-	sprite.setPosition(0, 0);
+	sprite.setPosition(positionX, positionY);
 	sprite.setOrigin(texture->getSize().x / 2, texture->getSize().x / 2);
 
 
-	//Initialisation de la physique du player
+	//Initialisation de la physique du character
 	b2BodyDef bodyDef;
 	bodyDef.type = b2_dynamicBody;
 	bodyDef.position.Set(0, 0);
 	body = world.CreateBody(&bodyDef);
 	b2FixtureDef fixDef;
+	b2PolygonShape shape;
+	shape.SetAsBox(texture->getSize().x / 2, texture->getSize().x / 2);
+	fixDef.shape = &shape;
 	fixDef.density = 0;
 	body->CreateFixture(&fixDef);
 }
@@ -35,4 +38,9 @@ void Character::update(float deltaTime)
 void Character::draw(sf::RenderWindow& window)
 {
 	window.draw(sprite);
+}
+
+sf::Vector2f Character::getPosition()
+{
+	return sprite.getPosition();
 }

@@ -20,28 +20,10 @@ int monMainLucas()
 
 	sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "SFML works!");
 	window.setFramerateLimit(60);
-	//aled ca marche pas ici
-	b2World world(b2Vec2{ 0, 0 });
-	Player player(400.0f,5,world,"Alfonso");
+	
+	Level level1("Niveau test", "Assets/Tiled_Map/map_test.tmx", window);
 
-	sf::Clock globalClock;
-	float deltaTime = 0.0f;
-	while (window.isOpen())
-	{
-		sf::Event ev;
-
-		while (window.pollEvent(ev))
-		{
-			if (ev.type == sf::Event::Closed)
-				window.close();
-		}
-		deltaTime = globalClock.restart().asSeconds();
-
-		window.clear();
-		player.update(deltaTime);
-		player.draw(window);
-		window.display();
-	}
+	level1.plays();
 
 	return 0;
 
