@@ -22,7 +22,6 @@ Level::Level(std::string const& name, std::string const& mapPath, std::string co
 	_characters(),
 	_contactListener()
 {
-	//std::cout << "vitesse = " << player.speed << std::endl;
 	// On charge la TiledMap
 	tmx::Map map;
 	if (!map.load(mapPath)) {
@@ -32,7 +31,7 @@ Level::Level(std::string const& name, std::string const& mapPath, std::string co
 
 	initPhysics(map);
 
-	auto playerPtr = std::make_unique<Player>(400.0f, 10, _world, 134, 97, 32, "Alfonso");
+	auto playerPtr = std::make_unique<Player>(400.0f, 3, 1, _world, 134, 97, 32, "Alfonso");
 	player = playerPtr.get();
 	_characters.push_back(std::move(playerPtr));
 
@@ -80,11 +79,12 @@ void Level::initEnemies(std::string const& enemiesFilePath) {
 		auto name = enemy["name"].as<std::string>();
 		auto speed = enemy["speed"].as<float>();
 		auto pv = enemy["pv"].as_int();
+		auto damage = enemy["damage"].as_int();
 		auto textureName = enemy["texture"].as<std::string>();
 
 		sf::Vector2f startPosition{ enemy["start_position"]["x"].as<float>(), enemy["start_position"]["y"].as<float>() };
 
-		auto e  = std::make_unique<Ennemy>(pv, speed, _world, 281, 230, 0, textureName, startPosition.x, startPosition.y);
+		auto e  = std::make_unique<Ennemy>(speed,pv, damage, _world, 281, 230, 0, textureName, startPosition.x, startPosition.y);
 
 		for (const auto& waypoint : enemy["waypoints"].array_range()) {
 			e->addWaypoint(sf::Vector2f{ waypoint["x"].as<float>(), waypoint["y"].as<float>() });

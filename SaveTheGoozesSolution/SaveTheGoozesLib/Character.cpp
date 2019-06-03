@@ -3,9 +3,9 @@
 
 
 
-Character::Character(float speed, int pv, b2World& world, int boxWidth, int boxHeight, int boxOffset, 
+Character::Character(float speed, int pv,int damage, b2World& world, int boxWidth, int boxHeight, int boxOffset, 
 		std::string textureName, float positionX , float positionY) :
-	speed(speed), pv(pv), sprite(), boxOffset(boxOffset)
+	speed(speed), pv(pv), damage(damage), sprite(), boxOffset(boxOffset)
 {
 	auto texture = AssetManager::getInstance()->getTexture(textureName);
 	sprite.setTexture(*texture);
@@ -49,4 +49,8 @@ void Character::draw(sf::RenderWindow& window) const
 sf::Vector2f Character::getPosition()
 {
 	return sprite.getPosition();
+}
+
+int Character::getDamage() {
+	return damage;
 }

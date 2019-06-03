@@ -2,7 +2,8 @@
     {
         "name" : "Fox01",
         "speed" : 150.0,
-        "pv" : 100,
+        "pv" : 2,
+		"damage" : 1,
         "texture" : "Bertrand",
         "start_position" : {
             "x" : 400,
@@ -30,7 +31,8 @@
     {
         "name" : "Fox02",
         "speed" : 150.0,
-        "pv" : 100,
+        "pv" : 2,
+		"damage" : 1,
         "texture" : "Bertrand",
         "start_position" : {
             "x" : 1600,

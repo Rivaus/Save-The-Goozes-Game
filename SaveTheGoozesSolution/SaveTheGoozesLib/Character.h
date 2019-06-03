@@ -11,17 +11,21 @@ class Character
 {
 
 public:
-	Character(float speed, int pv, b2World& world, int boxWidth, int boxHeight, int boxOffset, 
+	Character(float speed, int pv, int damage, b2World& world, int boxWidth, int boxHeight, int boxOffset, 
 		std::string textureName, float positionX = 0, float positionY = 0);
 	virtual ~Character() = default ;
 	
-	sf::Vector2f getPosition();
+	
 	virtual void update(float deltaTime);
 	void draw(sf::RenderWindow& window) const;
 	float speed;
 
+	sf::Vector2f getPosition();
+	int getDamage();
+
 private:
 	int pv;
+	int damage;
 	sf::Sprite sprite;
 	sf::RectangleShape shape;
 	int boxOffset;

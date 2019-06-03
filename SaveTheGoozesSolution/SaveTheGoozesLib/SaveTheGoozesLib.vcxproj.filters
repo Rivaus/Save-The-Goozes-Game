@@ -36,9 +36,6 @@
     <ClInclude Include="Utils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerTest.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="AssetManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
