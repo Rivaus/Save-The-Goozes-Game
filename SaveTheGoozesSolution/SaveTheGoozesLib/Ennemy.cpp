@@ -25,6 +25,7 @@ void Ennemy::update(float deltaTime) {
 		std::cout << "je suis arrivé et je cherche maintenant " << indexWaypoint << std::endl;
 	}
 	b2Vec2 direction(waypoints[indexWaypoint].x - body->GetPosition().x, waypoints[indexWaypoint].y - body->GetPosition().y );
+	std::cout << "Vitesse " << body->GetLinearVelocity().x << " ;" << body->GetLinearVelocity().y << std::endl;
 	direction = Utils::normalize(direction);
 	direction *= deltaTime * speed;
 	body->SetLinearVelocity(direction);

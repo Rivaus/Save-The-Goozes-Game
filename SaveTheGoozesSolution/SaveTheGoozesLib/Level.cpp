@@ -87,7 +87,7 @@ void Level::initEnemies(std::string const& enemiesFilePath) {
 		auto e  = std::make_unique<Ennemy>(pv, speed, _world, 281, 230, 0, textureName, startPosition.x, startPosition.y);
 
 		for (const auto& waypoint : enemy["waypoints"].array_range()) {
-			e->addWaypoint(sf::Vector2f{ waypoint["x"].as<float>(), waypoint["x"].as<float>() });
+			e->addWaypoint(sf::Vector2f{ waypoint["x"].as<float>(), waypoint["y"].as<float>() });
 			std::cout << name << " et j'ajoute un waypoint " << std::endl;
 		}
 		
