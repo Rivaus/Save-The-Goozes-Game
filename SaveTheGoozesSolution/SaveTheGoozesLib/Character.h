@@ -18,13 +18,13 @@ public:
 	
 	virtual void update(float deltaTime);
 	void draw(sf::RenderWindow& window) const;
-	float speed;
+	
 
 	sf::Vector2f getPosition();
 	int getDamage();
+	virtual void takeDamage(int damage);
 
 private:
-	int pv;
 	int damage;
 	sf::Sprite sprite;
 	sf::RectangleShape shape;
@@ -32,6 +32,9 @@ private:
 	
 protected:
 	b2Body* body;
+	int pv;
+	float speed;
 	bool isFflipped = false;
+	bool isDead = false;
 };
 

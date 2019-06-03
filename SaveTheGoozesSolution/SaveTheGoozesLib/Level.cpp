@@ -20,7 +20,7 @@ Level::Level(std::string const& name, std::string const& mapPath, std::string co
 	_window(window), _clock(),
 	_view(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(window.getSize().x, window.getSize().y)),
 	_characters(),
-	_contactListener()
+	_contactListener(_world)
 {
 	// On charge la TiledMap
 	tmx::Map map;
@@ -63,7 +63,6 @@ void Level::initPhysics(tmx::Map const& map) {
 				fixDef.shape = &shape;
 				fixDef.density = 1;
 				body->CreateFixture(&fixDef);
-				std::cout << "Je suis un mur" << std::endl;
 			}
 		}
 	}
@@ -88,7 +87,6 @@ void Level::initEnemies(std::string const& enemiesFilePath) {
 
 		for (const auto& waypoint : enemy["waypoints"].array_range()) {
 			e->addWaypoint(sf::Vector2f{ waypoint["x"].as<float>(), waypoint["y"].as<float>() });
-			std::cout << name << " et j'ajoute un waypoint " << std::endl;
 		}
 		
 		_characters.push_back(std::move(e));

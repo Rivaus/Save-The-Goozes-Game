@@ -54,3 +54,7 @@ sf::Vector2f Character::getPosition()
 int Character::getDamage() {
 	return damage;
 }
+
+void Character::takeDamage(int damage) {
+	pv -= damage;
+}
