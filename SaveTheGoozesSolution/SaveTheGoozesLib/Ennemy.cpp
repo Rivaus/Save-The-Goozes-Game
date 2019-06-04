@@ -35,4 +35,3 @@ void Ennemy::update(float deltaTime) {
 	Character::update(deltaTime);
 
 }
-

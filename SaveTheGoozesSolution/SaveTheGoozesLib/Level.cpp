@@ -9,6 +9,7 @@
 #include <jsoncons/json.hpp>
 #include <fstream>  
 #include <algorithm>
+#include <SFML/OpenGL.hpp>
 
 using namespace jsoncons;
 
@@ -31,12 +32,13 @@ Level::Level(std::string const& name, std::string const& mapPath, std::string co
 
 	initPhysics(map);
 
-	auto playerPtr = std::make_unique<Player>(400.0f, 3, 1, _world, 134, 97, 32, "Alfonso");
+	auto playerPtr = std::make_unique<Player>(400.0f, 300, 1, _world, 134, 97, 32, "Alfonso");
 	player = playerPtr.get();
 	_characters.push_back(std::move(playerPtr));
 
 	//On initialise les ennemis
 	initEnemies(enemiesFilePath);
+
 }
 
 

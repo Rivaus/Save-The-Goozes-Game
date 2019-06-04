@@ -158,6 +158,7 @@
     <ClInclude Include="Level.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="RaycastCallback.h" />
     <ClInclude Include="SFMLOrthogonalLayer.hpp" />
     <ClInclude Include="Utils.h" />
     <ClInclude Include="WorldContactListener.h" />
@@ -175,6 +176,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="RaycastCallback.cpp" />
     <ClCompile Include="SaveTheGoozesLib.cpp" />
     <ClCompile Include="Utils.cpp" />
     <ClCompile Include="WorldContactListener.cpp" />

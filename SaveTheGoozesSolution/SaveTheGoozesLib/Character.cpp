@@ -30,13 +30,13 @@ Character::Character(float speed, int pv,int damage, b2World& world, int boxWidt
 void Character::update(float deltaTime)
 {
 	auto directionX = body->GetLinearVelocity().x;
-	if (directionX < 0 && !isFflipped) {
+	if (directionX < 0 && !isFlipped) {
 		sprite.setScale(sf::Vector2f{ -1.f, 1.f });
-		isFflipped = true;
+		isFlipped = true;
 	}
-	else if (directionX > 0 && isFflipped) {
+	else if (directionX > 0 && isFlipped) {
 		sprite.setScale(sf::Vector2f{ 1.f, 1.f });
-		isFflipped = false;
+		isFlipped = false;
 	}
 	sprite.setPosition(sf::Vector2f(body->GetPosition().x, body->GetPosition().y - boxOffset)); //ici le sprite suit le body
 }

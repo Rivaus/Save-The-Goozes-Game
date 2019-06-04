@@ -11,6 +11,8 @@ public:
 	void update(float deltaTime) override;
 
 	void addWaypoint(sf::Vector2f const& waypoint);
+
+	void takeDamage(int damage) override;
 private:
 	std::vector<sf::Vector2f> waypoints;
 	int indexWaypoint;
