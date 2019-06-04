@@ -5,6 +5,10 @@
 #include <SFML/Graphics.hpp>
 
 // Classe qui gère toutes les entrées du clavier et des Joystick;
+enum class Action {
+	Attack,
+	TackGooze
+};
 
 class InputManager
 {
@@ -15,5 +19,6 @@ public:
 	static InputManager* getInstance();
 
 	float getAxis(std::string axis);
+	bool isActionPressed(Action const action);
 };
 

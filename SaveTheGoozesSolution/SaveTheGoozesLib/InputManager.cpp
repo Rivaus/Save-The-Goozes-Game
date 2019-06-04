@@ -48,3 +48,18 @@ float InputManager::getAxis(std::string axis) {
 
 	return direction;
 }
+
+bool InputManager::isActionPressed(Action const action) {
+	switch (action)
+	{
+	case Action::Attack:
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::E) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space) || sf::Joystick::isButtonPressed(0, 2)) {
+			return true;
+		}
+		break;
+	default:
+		break;
+	}
+
+	return false;
+}
