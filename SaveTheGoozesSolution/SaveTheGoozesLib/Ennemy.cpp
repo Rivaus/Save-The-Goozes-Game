@@ -17,6 +17,10 @@ void Ennemy::addWaypoint(sf::Vector2f const& waypoint) {
 
 void Ennemy::update(float deltaTime) {
 
+	if (isDead) {
+		body->SetTransform(b2Vec2{ .0f, .0f }, 0);
+	}
+
 	if (Utils::absoluteDistance(body->GetPosition(), waypoints[indexWaypoint]) < 5) {
 		indexWaypoint++;
 		if (indexWaypoint >= waypoints.size()) {

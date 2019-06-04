@@ -27,22 +27,5 @@ void Player::update(float deltaTime) {
 	Character::update(deltaTime);
 }
 
-void Player::takeDamage(int damage){
-	if (canBeHit) {
-		canBeHit = false;
-		auto t = std::thread(Player::waitForBeingHit, this, 2);
-		t.detach();
-		Character::takeDamage(damage);
-		std::cout << "Je suis touché, je n'ai plus que " << pv << " pv." << std::endl;
-		if (pv <= 0) {
-			std::cout << "Je suis mort. RIP." << pv << " pv." << std::endl;
-			isDead = true;
-		}
-	}
-}
 
-void Player::waitForBeingHit(Player* player, int waitingTime) {
-	std::this_thread::sleep_for(std::chrono::seconds(waitingTime));
-	player->canBeHit = true;
-	std::cout << "Je peux etre à nouveau touché." << std::endl;
-}
+

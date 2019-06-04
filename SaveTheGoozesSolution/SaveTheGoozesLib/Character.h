@@ -6,6 +6,7 @@
 #include "AssetManager.h"
 #include <string>
 #include "InputManager.h"
+#include <thread>
 
 class Character
 {
@@ -23,12 +24,14 @@ public:
 	sf::Vector2f getPosition();
 	int getDamage();
 	virtual void takeDamage(int damage);
+	static void waitForBeingHit(Character* player, int waitingTime);
 
 private:
 	int damage;
 	sf::Sprite sprite;
 	sf::RectangleShape shape;
 	int boxOffset;
+	bool canBeHit = true;
 	
 protected:
 	b2Body* body;

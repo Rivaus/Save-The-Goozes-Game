@@ -56,5 +56,22 @@ int Character::getDamage() {
 }
 
 void Character::takeDamage(int damage) {
-	pv -= damage;
+	if (canBeHit) {
+		pv -= damage;
+		canBeHit = false;
+		auto t = std::thread(Character::waitForBeingHit, this, 2);
+		t.detach();
+		Character::takeDamage(damage);
+		std::cout << "Je suis touché, je n'ai plus que " << pv << " pv." << std::endl;
+		if (pv <= 0) {
+			std::cout << "Je suis mort. RIP." << pv << " pv." << std::endl;
+			isDead = true;
+		}
+	}
+}
+
+void Character::waitForBeingHit(Character* player, int waitingTime) {
+	std::this_thread::sleep_for(std::chrono::seconds(waitingTime));
+	player->canBeHit = true;
+	std::cout << "Je peux etre à nouveau touché." << std::endl;
 }
