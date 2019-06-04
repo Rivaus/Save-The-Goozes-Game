@@ -10,11 +10,8 @@ public:
 		std::string textureName="Alfonso", float positionX = 0, float positionY = 0);
 
 	void update(float deltaTime) override;
-	void draw(sf::RenderWindow& window) const override;
 
 	bool isAttacking = false;
 private:
-	b2Body* interactiveBody;
-	sf::CircleShape interactiveShape;
 };
 

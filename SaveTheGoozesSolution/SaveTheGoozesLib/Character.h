@@ -18,7 +18,7 @@ public:
 	
 	
 	virtual void update(float deltaTime);
-	virtual void draw(sf::RenderWindow& window) const;
+	void draw(sf::RenderWindow& window) const;
 	
 
 	sf::Vector2f getPosition();
