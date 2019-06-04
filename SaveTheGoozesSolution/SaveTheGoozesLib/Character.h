@@ -32,6 +32,7 @@ private:
 	sf::RectangleShape shape;
 	int boxOffset;
 	bool canBeHit = true;
+	std::vector<sf::Texture*> textures;
 	
 protected:
 	b2Body* body;
