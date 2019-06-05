@@ -30,6 +30,7 @@ Level::Level(std::string const& name, std::string const& mapPath, std::string co
 		std::cout << "Unfortunately, the tiled map was not successfully loaded.";
 	}
 	_layers[0] = std::make_unique<MapLayer>(map, 0);
+	_layers[1] = std::make_unique<MapLayer>(map, 1);
 
 	initPhysics(map);
 
@@ -119,10 +120,12 @@ void Level::plays() {
 		sf::Time duration = _clock.getElapsedTime();
 		float deltaTime = duration.asSeconds();
 		_layers[0]->update(duration);
+		_layers[1]->update(duration);
 		update(deltaTime);
 
 		_window.clear();
 		_window.draw(*_layers[0]);
+		_window.draw(*_layers[1]);
 
 		/*std::sort(_characters.begin(), _characters.end(), [](auto& charA, auto& charB) {
 			return charA->getPosition().y < charB->getPosition().y;

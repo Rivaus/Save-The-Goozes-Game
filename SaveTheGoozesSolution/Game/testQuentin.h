@@ -18,7 +18,7 @@ int monMainQuentin()
 	sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "SFML works!");
 	window.setFramerateLimit(60);
 
-	Level level1("Niveau test", "Assets/Tiled_Map/map_test.tmx", "ennemies_level01.json", window);
+	Level level1("Niveau test", "Assets/Tiled_Map/map_test01.tmx", "ennemies_level01.json", window);
 
 	level1.plays();
 
