@@ -20,16 +20,22 @@ void UserInterface::init() {
 	float tailleX = 100.0f;
 	float tailleY = 100.0f;
 	for (int i = 0; i < 3; i++) {
-		auto canvas = createVie(100.0f, 100.0f, 10 + tailleX * i, 10);
-		canvas->display();
-		_gui.add(canvas);
-		_viesJoueur.push_back(canvas);
+		auto picture = createVie(tailleX, tailleY, 10 + tailleX * i, 10);
+		_gui.add(picture);
+		_viesJoueur.push_back(picture);
 	}
+
+
+	auto objectifLabel = tgui::Label::create();
+	objectifLabel->setText("Objectif : Catch the goose !  or as they say in france 'chope l'oie' !");
+	objectifLabel->setPosition(400, 10);
+	objectifLabel->setTextSize(20);
+	_gui.add(objectifLabel);
 }
 
 //fonction utilisé dans l'initialisation uniquement
-tgui::Canvas::Ptr UserInterface::createVie(float tailleX, float tailleY, float positionX, float positionY) {
-	sf::Texture texture = *AssetManager::getInstance()->getTexture("Alfonso");
+tgui::Picture::Ptr UserInterface::createVie(float tailleX, float tailleY, float positionX, float positionY) {
+	sf::Texture texture = *AssetManager::getInstance()->getTexture("Coeur");
 	sf::Sprite  sprite;
 	sprite.setTexture(texture);
 	sprite.setScale(tailleY / texture.getSize().x, tailleX / texture.getSize().y);
@@ -38,13 +44,13 @@ tgui::Canvas::Ptr UserInterface::createVie(float tailleX, float tailleY, float p
 	text.setPosition(25, 100);
 	text.setFillColor({ 200, 200, 200 });*/
 
-	auto canvas = tgui::Canvas::create({ tailleX, tailleY });
-	canvas->setPosition(positionX, positionY);
-	canvas->clear();
-	canvas->draw(sprite);
-	//canvas->draw(text);
+	auto picture = tgui::Picture::create(texture,true); //le true est pour la transparence
+	//picture->setInheritedOpacity(0.5f);
 
-	return canvas;
+	picture->setPosition(positionX, positionY);
+	//picture->draw(text);
+
+	return picture;
 }
 
 void UserInterface::update(int pvJoueur) {

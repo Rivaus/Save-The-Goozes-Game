@@ -13,6 +13,7 @@ int main()
 	assetManager->loadTexture("Alfonso_hit", "Assets/Sprites/Alfonso_hit.png");
 	assetManager->loadTexture("Bertrand", "Assets/Sprites/Bertrand.png");
 	assetManager->loadTexture("Bertrand_hit", "Assets/Sprites/Bertrand_hit.png");
+	assetManager->loadTexture("Coeur", "Assets/UI/coeur.png");
 
 	//monMainLucas();
 	monMainQuentin();

@@ -13,11 +13,11 @@ public:
 
 	void init();
 
-	tgui::Canvas::Ptr createVie(float tailleX, float tailleY, float positionX, float positionY);
+	tgui::Picture::Ptr createVie(float tailleX, float tailleY, float positionX, float positionY);
 	
 	void update(int pvJoueur);
 private:
 	tgui::Gui _gui;
-	std::vector<tgui::Canvas::Ptr> _viesJoueur;
+	std::vector<tgui::Picture::Ptr> _viesJoueur;
 };
 
