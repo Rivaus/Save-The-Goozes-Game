@@ -64,7 +64,7 @@ void Character::takeDamage(int damage) {
 		sprite.setTexture(*textures[1]);
 		auto t = std::thread(Character::waitForBeingHit, this, 2);
 		t.detach();
-		std::cout << "Je suis touché, je n'ai plus que " << pv << " pv." << std::endl;
+		std::cout << "Je suis touche, je n ai plus que " << pv << " pv." << std::endl;
 		if (pv <= 0) {
 			std::cout << "Je suis mort. RIP." << pv << " pv." << std::endl;
 			isDead = true;
@@ -76,5 +76,5 @@ void Character::waitForBeingHit(Character* player, int waitingTime) {
 	std::this_thread::sleep_for(std::chrono::seconds(waitingTime));
 	player->canBeHit = true;
 	player->sprite.setTexture(*player->textures[0]);
-	std::cout << "Je peux etre à nouveau touché." << std::endl;
+	std::cout << "Je peux etre a nouveau touche." << std::endl;
 }

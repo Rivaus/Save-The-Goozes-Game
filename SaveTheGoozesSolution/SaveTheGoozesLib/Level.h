@@ -7,6 +7,7 @@
 
 #include "Player.h"
 #include "Ennemy.h"
+#include "UserInterface.h"
 
 #include "WorldContactListener.h"
 
@@ -22,9 +23,11 @@ public:
 	void plays();
 	void update(float deltaTime);
 
+
 private :
 	void initPhysics(tmx::Map const& map);
 	void initEnemies(std::string const& enemiesFilePath);
+	void initGui();
 
 private:
 	std::array<std::unique_ptr<MapLayer>, 2> _layers;
@@ -36,5 +39,6 @@ private:
 	Player* player;
 	std::vector<std::unique_ptr<Character>> _characters;
 	WorldContactListener _contactListener;
+	UserInterface _gui;
 };
 

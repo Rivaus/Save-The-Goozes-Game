@@ -21,7 +21,8 @@ Level::Level(std::string const& name, std::string const& mapPath, std::string co
 	_window(window), _clock(),
 	_view(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(window.getSize().x, window.getSize().y)),
 	_characters(),
-	_contactListener(_world)
+	_contactListener(_world),
+	_gui(window)
 {
 	// On charge la TiledMap
 	tmx::Map map;
@@ -38,6 +39,7 @@ Level::Level(std::string const& name, std::string const& mapPath, std::string co
 
 	//On initialise les ennemis
 	initEnemies(enemiesFilePath);
+	initGui();
 
 }
 
@@ -96,6 +98,9 @@ void Level::initEnemies(std::string const& enemiesFilePath) {
 	file.close();
 }
 
+void Level::initGui() {
+	_gui.init(); //pour la fonction sert a rien mais on verra apres
+}
 
 void Level::plays() {
 
@@ -107,9 +112,9 @@ void Level::plays() {
 		{
 			if (ev.type == sf::Event::Closed)
 				_window.close();
+
+			//_gui.handleEvent(ev);//si il y a des events pour l'ui
 		}
-
-
 
 		sf::Time duration = _clock.getElapsedTime();
 		float deltaTime = duration.asSeconds();
@@ -126,6 +131,7 @@ void Level::plays() {
 		for (auto const& c : _characters) {
 			c->draw(_window);
 		}
+		_gui.draw(); //draw l'ui
 		_window.display();
 	}
 }
@@ -135,7 +141,7 @@ void Level::update(float deltaTime) {
 	for (auto& c : _characters) {
 		c->update(deltaTime);
 	}
-
+	_gui.update(3.0f);
 	_view.setCenter(player->getPosition());
 	_window.setView(_view);
 }

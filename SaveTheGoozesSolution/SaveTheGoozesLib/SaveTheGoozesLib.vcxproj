@@ -23,7 +23,7 @@
     <ProjectGuid>{54F4E957-3902-47E0-9B52-1638A1CF2D89}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>SaveTheGoozesLib</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -160,6 +160,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="RaycastCallback.h" />
     <ClInclude Include="SFMLOrthogonalLayer.hpp" />
+    <ClInclude Include="UserInterface.h" />
     <ClInclude Include="Utils.h" />
     <ClInclude Include="WorldContactListener.h" />
   </ItemGroup>
@@ -178,6 +179,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="RaycastCallback.cpp" />
     <ClCompile Include="SaveTheGoozesLib.cpp" />
+    <ClCompile Include="UserInterface.cpp" />
     <ClCompile Include="Utils.cpp" />
     <ClCompile Include="WorldContactListener.cpp" />
   </ItemGroup>
