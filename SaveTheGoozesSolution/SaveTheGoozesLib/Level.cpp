@@ -101,6 +101,7 @@ void Level::initEnemies(std::string const& enemiesFilePath) {
 
 void Level::initGui() {
 	_gui.init(); //pour la fonction sert a rien mais on verra apres
+	player->addUI(&_gui);
 }
 
 void Level::plays() {

@@ -9,6 +9,10 @@ Player::Player(float speed,int pv, int damage, b2World& world, int boxWidth, int
 {
 }
 
+void Player::addUI(UserInterface* ui) {
+	_ui = ui;
+}
+
 void Player::update(float deltaTime) {
 
 	if (isDead) {
@@ -46,4 +50,15 @@ void Player::attack() {
 void Player::draw(sf::RenderWindow& window) const {
 	Character::draw(window);
 	window.draw(line);
+}
+
+void Player::takeDamage(int damage) {
+	Character::takeDamage(damage);
+	if (isDead) {
+		_ui->onNotify(1); //on remet tout les coeurs dans l'UI
+	}
+	else {
+		_ui->onNotify(0); //on perd un coeur dans l'ui
+	}
+	
 }

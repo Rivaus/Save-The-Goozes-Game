@@ -1,14 +1,61 @@
 #include "pch.h"
 #include "UserInterface.h"
 
-
+/*Tu peux faire une sorte de mini pattern Observer. Dsns player,
+tu rajoutes un pointeur/ou référence  vers ton uiInterface. 
+Et dans Player, tu ovverides takeDamage (faut la passer en virtuel dsns Character du coup)
+pour qu’elle appelle takeDamage de la mère + notifie ton UI*/
 
 UserInterface::UserInterface(sf::RenderWindow& window):
 	_gui(window)
 {
 }
 
+void UserInterface::perdUneVie() {
+	for (tgui::Picture::Ptr coeur : _viesJoueur) {
+		if (coeur->isVisible()) {
+			coeur->setVisible(false);
+			break;
+		}
+	}
+}
+void UserInterface::ressucite(){
+	for (tgui::Picture::Ptr coeur : _viesJoueur) {
+		if (!coeur->isVisible()) {
+			coeur->setVisible(true);
+		}
+	}
+}
+
+
 void UserInterface::draw() {
+	_gui.draw();
+}
+
+void UserInterface::onNotify(sf::Event event) {
+	switch (event.type)
+	{
+	case 0:
+	{
+		perdUneVie();
+	}
+	break;
+	}
+}
+
+void UserInterface::onNotify(int event) {
+	switch (event)
+	{
+	case 0:
+	{
+		perdUneVie();
+	}
+	case 1:
+	{
+		ressucite();
+	}
+	break;
+	}
 	_gui.draw();
 }
 

@@ -1,5 +1,6 @@
 #pragma once
 #include "Character.h"
+#include "UserInterface.h"
 
 #include <thread>
 
@@ -11,6 +12,8 @@ public:
 
 	void update(float deltaTime) override;
 	void draw(sf::RenderWindow& window) const override;
+	void addUI(UserInterface* ui);
+	void takeDamage(int damage) override;
 
 	void attack();
 
@@ -18,5 +21,6 @@ private :
 	bool isAttacking = false;
 	b2World& world;
 	sf::RectangleShape line;
+	UserInterface* _ui;
 };
 

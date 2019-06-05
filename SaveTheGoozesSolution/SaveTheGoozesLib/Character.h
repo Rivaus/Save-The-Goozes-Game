@@ -23,7 +23,7 @@ public:
 
 	sf::Vector2f getPosition();
 	int getDamage();
-	void takeDamage(int damage);
+	virtual void takeDamage(int damage);
 	static void waitForBeingHit(Character* player, int waitingTime);
 
 private:
