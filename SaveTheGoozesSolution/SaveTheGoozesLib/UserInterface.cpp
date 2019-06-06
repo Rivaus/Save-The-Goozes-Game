@@ -7,6 +7,15 @@ UserInterface::UserInterface(sf::RenderWindow& window):
 {
 }
 
+void UserInterface::initChoix() {
+	auto choix = tgui::Button::create();
+	choix->setText("Choix 1");
+	choix->setPosition(70, 150);
+	choix->setSize(100, 30);
+	choix->connect("pressed", [=]() { _gui.remove(choix); });
+	_gui.add(choix);
+}
+
 void UserInterface::perdUneVie() {
 	
 	for (int i = nbViesPerdues; i >= 0;i--) {	

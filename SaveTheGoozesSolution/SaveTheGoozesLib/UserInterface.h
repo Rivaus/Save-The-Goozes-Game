@@ -20,6 +20,7 @@ public:
 	void onNotify(sf::Event event);
 	void onNotify(Events event);
 	void init();
+	void initChoix();
 
 	tgui::Picture::Ptr createVie(float tailleX, float tailleY, float positionX, float positionY);
 	

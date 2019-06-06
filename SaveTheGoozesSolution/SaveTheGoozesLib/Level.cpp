@@ -114,7 +114,7 @@ void Level::plays() {
 			if (ev.type == sf::Event::Closed)
 				_window.close();
 
-			//_gui.handleEvent(ev);//si il y a des events pour l'ui
+			_gui.handleEvent(ev);//si il y a des events pour l'ui
 		}
 
 		sf::Time duration = _clock.getElapsedTime();
@@ -123,6 +123,7 @@ void Level::plays() {
 		_layers[1]->update(duration);
 		update(deltaTime);
 
+		_gui.initChoix();
 		_window.clear();
 		_window.draw(*_layers[0]);
 		_window.draw(*_layers[1]);
