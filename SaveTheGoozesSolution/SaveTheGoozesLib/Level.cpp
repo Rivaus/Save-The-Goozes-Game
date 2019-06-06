@@ -115,7 +115,7 @@ void Level::plays() {
 			if (ev.type == sf::Event::Closed)
 				_window.close();
 
-			_gui.handleEvent(ev);//si il y a des events pour l'ui
+			_gui.handleEvents(ev);//si il y a des events pour l'ui
 		}
 
 		sf::Time duration = _clock.getElapsedTime();

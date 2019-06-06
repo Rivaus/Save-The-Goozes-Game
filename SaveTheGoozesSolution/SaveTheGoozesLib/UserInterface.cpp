@@ -10,10 +10,18 @@ UserInterface::UserInterface(sf::RenderWindow& window):
 void UserInterface::initChoix() {
 	auto choix = tgui::Button::create();
 	choix->setText("Choix 1");
-	choix->setPosition(70, 150);
-	choix->setSize(100, 30);
-	choix->connect("pressed", [=]() { _gui.remove(choix); });
+	choix->setPosition(100, 100);
+	choix->setSize(100, 100);
+	choix->connect("pressed", [=]() { _gui.remove(choix); std::cout << "Music is my medecine" << std::endl; });
 	_gui.add(choix);
+
+
+	auto choix2 = tgui::Button::create();
+	choix2->setText("Choix 2");
+	choix2->setPosition(300, 100);
+	choix2->setSize(100, 100);
+	choix2->connect("pressed", [=]() { _gui.remove(choix); std::cout << "Music is my medecine" << std::endl; });
+	_gui.add(choix2);
 }
 
 void UserInterface::perdUneVie() {
@@ -59,8 +67,16 @@ void UserInterface::onNotify(Events event) {
 	_gui.draw();
 }
 
-void UserInterface::handleEvent(sf::Event event) {
-	_gui.handleEvent(event);
+void UserInterface::handleEvents(sf::Event event) {
+	bool retBool = _gui.handleEvent(event);
+	if (retBool&&event.type==9) {
+		std::cout << "l'event MousePressed a ete consomme : x = "<< event.mouseButton.x <<", y = "<< event.mouseButton.y <<std::endl;
+		if (event.mouseButton.x > 100 && event.mouseButton.x < 200 && event.mouseButton.y>100 && event.mouseButton.y < 200) {
+			std::cout << "le choix 1 est cliquey" << std::endl;
+		}else if (event.mouseButton.x > 300 && event.mouseButton.x < 400 && event.mouseButton.y>100 && event.mouseButton.y < 200) {
+			std::cout << "le choix 2 est cliquey" << std::endl;
+		}
+	}
 }
 
 void UserInterface::init() {

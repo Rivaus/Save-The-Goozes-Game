@@ -16,7 +16,7 @@ public:
 
 	void draw();
 
-	void handleEvent(sf::Event event);
+	void handleEvents(sf::Event event);
 	void onNotify(sf::Event event);
 	void onNotify(Events event);
 	void init();
