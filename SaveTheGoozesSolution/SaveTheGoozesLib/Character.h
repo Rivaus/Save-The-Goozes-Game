@@ -5,7 +5,6 @@
 #include "Utils.h"
 #include "AssetManager.h"
 #include <string>
-#include "InputManager.h"
 #include <thread>
 
 class Character
