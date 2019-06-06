@@ -145,7 +145,7 @@ void Level::update(float deltaTime) {
 	for (auto& c : _characters) {
 		c->update(deltaTime);
 	}
-	_gui.update(3.0f);
+	_gui.update(3);
 	_view.setCenter(player->getPosition());
 	_window.setView(_view);
 }
