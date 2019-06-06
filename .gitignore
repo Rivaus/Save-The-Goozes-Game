@@ -13,7 +13,7 @@
 *.userprefs
 
 #Projetc pref
-.vcxproj
+*.vcxproj
 
 # Build results
 [Dd]ebug/
