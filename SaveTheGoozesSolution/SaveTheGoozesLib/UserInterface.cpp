@@ -17,7 +17,6 @@ void UserInterface::initChoix() {
 }
 
 void UserInterface::perdUneVie() {
-	
 	for (int i = nbViesPerdues; i >= 0;i--) {	
 		_gui.remove(_viesJoueur[2-i]);
 	}
