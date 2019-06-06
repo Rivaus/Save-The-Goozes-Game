@@ -57,10 +57,12 @@ int Character::getDamage() {
 	return damage;
 }
 
-void Character::takeDamage(int damage) {
+bool Character::takeDamage(int damage) {
+	bool updateUI = false;
 	if (canBeHit) {
 		pv -= damage;
 		canBeHit = false;
+		updateUI = true;
 		sprite.setTexture(*textures[1]);
 		auto t = std::thread(Character::waitForBeingHit, this, 2);
 		t.detach();
@@ -70,6 +72,7 @@ void Character::takeDamage(int damage) {
 			isDead = true;
 		}
 	}
+	return updateUI;
 }
 
 void Character::waitForBeingHit(Character* player, int waitingTime) {

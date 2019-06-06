@@ -3,7 +3,7 @@
 #include "AssetManager.h"
 #include "Character.h"
 
-enum class Events {
+enum class Events{
 	PlayerTakeDamage,
 	PlayerDied
 };
@@ -23,7 +23,7 @@ public:
 
 	tgui::Picture::Ptr createVie(float tailleX, float tailleY, float positionX, float positionY);
 	
-	void update(int pvJoueur);
+	void update();
 
 private:
 	void perdUneVie();
@@ -32,5 +32,6 @@ private:
 private:
 	tgui::Gui _gui;
 	std::vector<tgui::Picture::Ptr> _viesJoueur;
+	int nbViesPerdues = 0;
 };
 

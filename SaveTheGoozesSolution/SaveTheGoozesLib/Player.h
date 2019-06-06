@@ -14,7 +14,7 @@ public:
 	void draw(sf::RenderWindow& window) const override;
 
 	void addUI(UserInterface* ui);
-	void takeDamage(int damage) override;
+	void takeDamage(int damage);
 
 	void attack();
 

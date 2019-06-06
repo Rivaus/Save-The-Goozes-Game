@@ -85,12 +85,15 @@ void Player::draw(sf::RenderWindow& window) const {
 }
 
 void Player::takeDamage(int damage) {
-	Character::takeDamage(damage);
-	if (isDead) {
-		_ui->onNotify(Events::PlayerDied); //on remet tout les coeurs dans l'UI
+	if (Character::takeDamage(damage)) {
+		if (isDead) {
+			_ui->onNotify(Events::PlayerDied); //on remet tout les coeurs dans l'UI
+			
+
+		}
+		else {
+			_ui->onNotify(Events::PlayerTakeDamage); //on perd un coeur dans l'ui
+			
+		}
 	}
-	else {
-		_ui->onNotify(Events::PlayerTakeDamage); //on perd un coeur dans l'ui
-	}
-	
 }

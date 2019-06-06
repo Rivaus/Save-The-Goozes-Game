@@ -8,22 +8,19 @@ UserInterface::UserInterface(sf::RenderWindow& window):
 }
 
 void UserInterface::perdUneVie() {
-	for (auto coeur : _viesJoueur) {
-		if (coeur->isVisible()) {
-			std::cout << "aie aie un coeur disparait" << std::endl;
-			_gui.remove(coeur);
-			coeur->setVisible(false);
-			break;
-		}
+	
+	for (int i = nbViesPerdues; i >= 0;i--) {	
+		_gui.remove(_viesJoueur[2-i]);
 	}
+	nbViesPerdues++;
 }
+
 void UserInterface::ressucite(){
+	
 	for (auto coeur : _viesJoueur) {
-		if (!coeur->isVisible()) {
-			coeur->setVisible(true);
 			_gui.add(coeur);
-		}
 	}
+	nbViesPerdues = 0;
 }
 
 
@@ -43,18 +40,14 @@ void UserInterface::onNotify(sf::Event event) {
 }
 
 void UserInterface::onNotify(Events event) {
-	std::cout << "Je suis notifier" << std::endl;
 	switch (event)
 	{
 	case Events::PlayerTakeDamage:
-	{
 		perdUneVie();
-	}
+		break;
 	case Events::PlayerDied:
-	{
 		ressucite();
-	}
-	break;
+		break;
 	}
 	_gui.draw();
 }
@@ -68,7 +61,7 @@ void UserInterface::init() {
 	float tailleY = 100.0f;
 	for (int i = 0; i < 3; i++) {
 		auto picture = createVie(tailleX, tailleY, 10 + tailleX * i, 10);
-		_gui.add(picture);
+		_gui.add(picture,"coeur"+i);
 		_viesJoueur.push_back(picture);
 	}
 
@@ -101,6 +94,6 @@ tgui::Picture::Ptr UserInterface::createVie(float tailleX, float tailleY, float 
 	return picture;
 }
 
-void UserInterface::update(int pvJoueur) {
+void UserInterface::update() {
 	_gui.draw();
 }
