@@ -41,6 +41,7 @@ Level::Level(std::string const& name, std::string const& mapPath, std::string co
 	initEnemies(enemiesFilePath);
 	initGui();
 
+	_view.zoom(4);
 }
 
 

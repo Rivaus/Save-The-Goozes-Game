@@ -16,6 +16,7 @@ void WorldContactListener::BeginContact(b2Contact* contact) {
 		if (static_cast<Ennemy*>(bodyuserDataB)) {
 			auto enemy = static_cast<Ennemy*>(bodyuserDataB);
 			player->takeDamage(enemy->getDamage());
+			std::cout << "des gens se frottent" << std::endl;
 		}
 	}
 }
