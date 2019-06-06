@@ -3,6 +3,12 @@
 #include "AssetManager.h"
 #include "Character.h"
 
+enum class Events {
+	PlayerTakeDamage,
+	PlayerDied
+};
+
+
 class UserInterface
 {
 public:
@@ -12,7 +18,7 @@ public:
 
 	void handleEvent(sf::Event event);
 	void onNotify(sf::Event event);
-	void onNotify(int event);
+	void onNotify(Events event);
 	void init();
 
 	tgui::Picture::Ptr createVie(float tailleX, float tailleY, float positionX, float positionY);

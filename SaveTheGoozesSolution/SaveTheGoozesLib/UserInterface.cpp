@@ -12,15 +12,16 @@ UserInterface::UserInterface(sf::RenderWindow& window):
 }
 
 void UserInterface::perdUneVie() {
-	for (tgui::Picture::Ptr coeur : _viesJoueur) {
+	for (auto coeur : _viesJoueur) {
 		if (coeur->isVisible()) {
 			coeur->setVisible(false);
+			_gui.draw();
 			break;
 		}
 	}
 }
 void UserInterface::ressucite(){
-	for (tgui::Picture::Ptr coeur : _viesJoueur) {
+	for (auto coeur : _viesJoueur) {
 		if (!coeur->isVisible()) {
 			coeur->setVisible(true);
 		}
@@ -43,14 +44,15 @@ void UserInterface::onNotify(sf::Event event) {
 	}
 }
 
-void UserInterface::onNotify(int event) {
+void UserInterface::onNotify(Events event) {
+	std::cout << "Je suis notifier" << std::endl;
 	switch (event)
 	{
-	case 0:
+	case Events::PlayerTakeDamage:
 	{
 		perdUneVie();
 	}
-	case 1:
+	case Events::PlayerDied:
 	{
 		ressucite();
 	}
@@ -78,6 +80,7 @@ void UserInterface::init() {
 	objectifLabel->setPosition(400, 10);
 	objectifLabel->setTextSize(20);
 	_gui.add(objectifLabel);
+
 }
 
 //fonction utilisé dans l'initialisation uniquement
