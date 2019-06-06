@@ -21,18 +21,50 @@ void Player::update(float deltaTime) {
 		body->SetTransform(b2Vec2{ .0f, .0f }, 0.0f);
 	}
 
-	InputManager* inputMng = InputManager::getInstance();
+	handleInput(deltaTime);
 
-	b2Vec2 direction(inputMng->getAxis("Horizontal"), inputMng->getAxis("Vertical"));
+	Character::update(deltaTime);
+	line.setPosition(body->GetPosition().x + 100.f, body->GetPosition().y);
+}
+
+void Player::handleInput(float deltaTime) {
+	float directionX = 0;
+	float directionY = 0;
+
+	//Horizontal movment
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)
+		|| sf::Joystick::getAxisPosition(0, sf::Joystick::Axis::X) > 50) {
+		directionX = 1.f;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q)
+		|| sf::Joystick::getAxisPosition(0, sf::Joystick::Axis::X) < -50) {
+		directionX = -1.0;
+	}
+	//Vertical movment
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Z)
+		|| sf::Joystick::getAxisPosition(0, sf::Joystick::Axis::Y) < -50) {
+		directionY = -1.0;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)
+		|| sf::Joystick::getAxisPosition(0, sf::Joystick::Axis::Y) > 50) {
+		directionY = 1.0;
+	}
+	if (directionX != .0f || directionY != .0f)
+		move(directionX, directionY, deltaTime);
+	else
+		body->SetLinearVelocity(b2Vec2_zero);
+
+	//Actions
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::E) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space) || sf::Joystick::isButtonPressed(0, 2)) {
+		attack();
+	}
+}
+
+void Player::move(float movX, float movY, float deltaTime) {
+	b2Vec2 direction{ movX, movY };
 	direction = Utils::normalize(direction);
 	direction *= deltaTime * speed;
 	body->SetLinearVelocity(direction);
-
-	if (inputMng->isActionPressed(Action::Attack)) {
-		attack();
-	}
-	Character::update(deltaTime);
-	line.setPosition(body->GetPosition().x + 100.f, body->GetPosition().y);
 }
 
 void Player::attack() {

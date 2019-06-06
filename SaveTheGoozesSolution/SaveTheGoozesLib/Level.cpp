@@ -13,7 +13,6 @@
 
 using namespace jsoncons;
 
-#include "InputManager.h"
 #include "Utils.h"
 
 Level::Level(std::string const& name, std::string const& mapPath, std::string const& enemiesFilePath, sf::RenderWindow& window) :

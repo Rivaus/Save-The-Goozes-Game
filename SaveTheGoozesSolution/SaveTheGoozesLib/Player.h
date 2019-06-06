@@ -12,10 +12,15 @@ public:
 
 	void update(float deltaTime) override;
 	void draw(sf::RenderWindow& window) const override;
+
 	void addUI(UserInterface* ui);
 	void takeDamage(int damage) override;
 
 	void attack();
+
+private :
+	void handleInput(float deltaTime);
+	void move(float moX, float movY, float deltaTime);
 
 private :
 	bool isAttacking = false;
