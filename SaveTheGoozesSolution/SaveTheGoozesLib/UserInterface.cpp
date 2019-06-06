@@ -16,11 +16,10 @@ void UserInterface::perdUneVie() {
 }
 
 void UserInterface::ressucite(){
-	
+	nbViesPerdues = 0;
 	for (auto coeur : _viesJoueur) {
 			_gui.add(coeur);
 	}
-	nbViesPerdues = 0;
 }
 
 
