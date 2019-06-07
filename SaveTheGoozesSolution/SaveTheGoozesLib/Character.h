@@ -27,17 +27,18 @@ public:
 
 private:
 	int damage;
-	sf::Sprite sprite;
 	sf::RectangleShape shape;
 	int boxOffset;
 	bool canBeHit = true;
 	std::vector<sf::Texture*> textures;
 	
 protected:
+	sf::Sprite sprite;
 	b2Body* body;
 	int pv;
 	float speed;
 	bool isFlipped = false;
 	bool isDead = false;
+	float scale = 1.0f;
 };
 

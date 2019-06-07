@@ -1,5 +1,6 @@
 #pragma once
 #include "Character.h"
+#include"Gooze.h"
 #include "UserInterface.h"
 
 #include <thread>
@@ -18,6 +19,8 @@ public:
 
 	void attack();
 
+	void findGooze(GoozePower power);
+
 private :
 	void handleInput(float deltaTime);
 	void move(float moX, float movY, float deltaTime);
@@ -29,5 +32,6 @@ private :
 	UserInterface* _ui;
 	bool isConfused = false;
 	bool isSliding = false;
+	bool isInvincible = false;
 };
 

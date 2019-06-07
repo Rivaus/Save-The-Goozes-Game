@@ -3,6 +3,7 @@
 #include <iostream>
 #include "Player.h"
 #include "Ennemy.h"
+#include "Gooze.h"
 
 
 WorldContactListener::WorldContactListener(b2World& world) : world(world) {}
@@ -17,6 +18,10 @@ void WorldContactListener::BeginContact(b2Contact* contact) {
 	if (auto player = dynamic_cast<Player*>(bodyUserDataA)) {
 		if (auto enemy = dynamic_cast<Ennemy*>(bodyuserDataB)) {
 			player->takeDamage(enemy->getDamage());
+		}
+		else if (auto gooze = dynamic_cast<Gooze*>(bodyuserDataB)) {
+			player->findGooze(gooze->getPower());
+			gooze->found();
 		}
 	}
 }

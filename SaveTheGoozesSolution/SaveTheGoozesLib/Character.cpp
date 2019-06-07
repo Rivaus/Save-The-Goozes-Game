@@ -33,11 +33,11 @@ void Character::update(float deltaTime)
 {
 	auto directionX = body->GetLinearVelocity().x;
 	if (directionX < 0 && !isFlipped) {
-		sprite.setScale(sf::Vector2f{ -1.f, 1.f });
+		sprite.setScale(sf::Vector2f{ -scale, scale });
 		isFlipped = true;
 	}
 	else if (directionX > 0 && isFlipped) {
-		sprite.setScale(sf::Vector2f{ 1.f, 1.f });
+		sprite.setScale(sf::Vector2f{ scale, scale });
 		isFlipped = false;
 	}
 	sprite.setPosition(sf::Vector2f(body->GetPosition().x, body->GetPosition().y - boxOffset)); //ici le sprite suit le body

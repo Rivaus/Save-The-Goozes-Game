@@ -90,15 +90,25 @@ void Player::draw(sf::RenderWindow& window) const {
 }
 
 void Player::takeDamage(int damage) {
-	if (Character::takeDamage(damage)) {
-		if (isDead) {
-			_ui->onNotify(Events::PlayerDied); //on remet tout les coeurs dans l'UI
-			
+	if (!isInvincible) {
+		if (Character::takeDamage(damage)) {
+			if (isDead) {
+				_ui->onNotify(Events::PlayerDied); //on remet tout les coeurs dans l'UI
+			}
+			else {
+				_ui->onNotify(Events::PlayerTakeDamage); //on perd un coeur dans l'ui	
+			}
+		}
+	}
+}
 
-		}
-		else {
-			_ui->onNotify(Events::PlayerTakeDamage); //on perd un coeur dans l'ui
-			
-		}
+void Player::findGooze(GoozePower power) {
+	switch (power) {
+	case GoozePower::Invincible:
+		isInvincible = true;
+		scale = 1.3f;
+		std::cout << "Je deviens invincible !" << std::endl;
+		sprite.setScale(sf::Vector2f{ scale, scale });
+		break;
 	}
 }
