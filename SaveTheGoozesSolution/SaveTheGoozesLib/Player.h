@@ -27,5 +27,7 @@ private :
 	b2World& world;
 	sf::RectangleShape line;
 	UserInterface* _ui;
+	bool isConfused = false;
+	bool isSliding = false;
 };
 

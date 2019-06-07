@@ -19,9 +19,6 @@ public:
 		return _instance.get();
 	}
 
-
-	AssetManager() { std::cout << "Je crée un asset Manager" << std::endl; }
-
 	sf::Texture* getTexture(std::string const& textureName);
 
 	void loadTexture(std::string const& textureName, std::string const& texturePath);

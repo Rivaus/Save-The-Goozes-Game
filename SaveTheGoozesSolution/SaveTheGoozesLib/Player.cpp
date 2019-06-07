@@ -49,9 +49,10 @@ void Player::handleInput(float deltaTime) {
 		|| sf::Joystick::getAxisPosition(0, sf::Joystick::Axis::Y) > 50) {
 		directionY = 1.0;
 	}
-	if (directionX != .0f || directionY != .0f)
+	if (directionX != .0f || directionY != .0f) {
 		move(directionX, directionY, deltaTime);
-	else
+	}
+	else if (!isSliding)
 		body->SetLinearVelocity(b2Vec2_zero);
 
 	//Actions
@@ -62,6 +63,10 @@ void Player::handleInput(float deltaTime) {
 
 void Player::move(float movX, float movY, float deltaTime) {
 	b2Vec2 direction{ movX, movY };
+	if (isConfused) {
+		direction.x = -movY;
+		direction.y = -movX;
+	}
 	direction = Utils::normalize(direction);
 	direction *= deltaTime * speed;
 	body->SetLinearVelocity(direction);
