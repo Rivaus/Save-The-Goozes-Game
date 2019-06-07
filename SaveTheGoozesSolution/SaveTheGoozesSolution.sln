@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SaveTheGoozesLib", "SaveTheGoozesLib\SaveTheGoozesLib.vcxproj", "{54F4E957-3902-47E0-9B52-1638A1CF2D89}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UnitTests", "UnitTests\UnitTests.vcxproj", "{63B23A13-B6CA-478F-8BD5-730D85A1A3F0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{54F4E957-3902-47E0-9B52-1638A1CF2D89} = {54F4E957-3902-47E0-9B52-1638A1CF2D89}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Game", "Game\Game.vcxproj", "{05557636-374F-49FE-8A08-35DCBBE9437E}"
 	ProjectSection(ProjectDependencies) = postProject
