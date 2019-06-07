@@ -7,6 +7,7 @@
 
 #include "Player.h"
 #include "Ennemy.h"
+#include "Gooze.h"
 #include "UserInterface.h"
 
 #include "WorldContactListener.h"

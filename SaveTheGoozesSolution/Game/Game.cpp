@@ -14,6 +14,8 @@ int main()
 	assetManager->loadTexture("Bertrand", "Assets/Sprites/Bertrand.png");
 	assetManager->loadTexture("Bertrand_hit", "Assets/Sprites/Bertrand_hit.png");
 	assetManager->loadTexture("Coeur", "Assets/UI/coeur.png");
+	assetManager->loadTexture("Gooze", "Assets/Sprites/Gooze.png");
+	assetManager->loadTexture("Gooze_hit", "Assets/Sprites/Gooze_hit.png");
 
 	//monMainLucas();
 	monMainQuentin();

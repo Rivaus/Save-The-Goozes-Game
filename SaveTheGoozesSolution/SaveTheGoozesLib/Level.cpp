@@ -37,6 +37,9 @@ Level::Level(std::string const& name, std::string const& mapPath, std::string co
 	player = playerPtr.get();
 	_characters.push_back(std::move(playerPtr));
 
+	//On charge l'oi
+	_characters.push_back(std::make_unique<Gooze>(0, 400, 1, _world, 206, 200, 0, "Gooze", 600, 900));
+
 	//On initialise les ennemis
 	initEnemies(enemiesFilePath);
 	initGui();

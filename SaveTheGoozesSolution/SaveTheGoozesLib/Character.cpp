@@ -41,8 +41,6 @@ void Character::update(float deltaTime)
 		isFlipped = false;
 	}
 	sprite.setPosition(sf::Vector2f(body->GetPosition().x, body->GetPosition().y - boxOffset)); //ici le sprite suit le body
-
-	body->ApplyForceToCenter(b2Vec2{ 100.f, .0f }, true);
 }
 
 void Character::draw(sf::RenderWindow& window) const
