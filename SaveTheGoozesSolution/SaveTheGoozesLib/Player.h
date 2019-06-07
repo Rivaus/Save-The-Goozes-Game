@@ -1,14 +1,13 @@
 #pragma once
+#ifndef PLAYER_DEF
+#define PLAYER_DEF
 #include "Character.h"
 #include"Gooze.h"
 #include "UserInterface.h"
 
+
 #include <thread>
 
-enum class Choix {
-	Slide,
-	Confus
-};
 
 class Player : public Character
 {
@@ -41,3 +40,4 @@ private :
 	bool isInvincible = false;
 };
 
+#endif

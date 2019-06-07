@@ -1,4 +1,7 @@
 #pragma once
+#ifndef CHARACTER_DEF
+#define CHARACTER_DEF
+
 
 #include<SFML/Graphics.hpp>
 #include <Box2D/Box2D.h>
@@ -42,3 +45,4 @@ protected:
 	float scale = 1.0f;
 };
 
+#endif // !CHARACTER_DEF

@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "UserInterface.h"
+#include "Player.h"
 
 
 UserInterface::UserInterface(sf::RenderWindow& window):
@@ -19,7 +20,8 @@ void UserInterface::initChoix() {
 	choix->setPosition(positionX, positionY);
 	choix->setSize(tailleX, tailleY);
 	choix->setTextSize(15);
-	choix->connect("pressed", [=]() { _gui.remove(choix); std::cout << "Music is my medecine" << std::endl;  });
+	choix->connect("pressed", [=]() { _gui.remove(choix); std::cout << "Music is my medecine" << std::endl; 
+	_player->setChoix(Choix::Slide); });
 	_gui.add(choix);
 
 	positionX += tailleX + offsetX;
@@ -29,7 +31,8 @@ void UserInterface::initChoix() {
 	choix2->setPosition(positionX, positionY);
 	choix2->setSize(tailleX, tailleY);
 	choix2->setTextSize(15);
-	choix2->connect("pressed", [=]() { _gui.remove(choix2); std::cout << "I pledge my allegiance, to rythm and sound" << std::endl; });
+	choix2->connect("pressed", [=]() { _gui.remove(choix2); std::cout << "I pledge my allegiance, to rythm and sound" << std::endl;
+	_player->setChoix(Choix::Confus); });
 	_gui.add(choix2);
 }
 
@@ -88,7 +91,7 @@ void UserInterface::handleEvents(sf::Event event) {
 	}*/
 }
 
-void UserInterface::init() {
+void UserInterface::init(Player *player) {
 	float tailleX = 100.0f;
 	float tailleY = 100.0f;
 	for (int i = 0; i < 3; i++) {
@@ -96,7 +99,7 @@ void UserInterface::init() {
 		_gui.add(picture,"coeur"+i);
 		_viesJoueur.push_back(picture);
 	}
-
+	_player = player;
 
 	auto objectifLabel = tgui::Label::create();
 	objectifLabel->setText("Objectif : Catch the goose !  or as they say in france 'chope l'oie' !");

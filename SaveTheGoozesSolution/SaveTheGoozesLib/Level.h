@@ -28,7 +28,7 @@ public:
 private :
 	void initPhysics(tmx::Map const& map);
 	void initEnemies(std::string const& enemiesFilePath);
-	void initGui();
+	void initGui(Player* player);
 
 private:
 	std::array<std::unique_ptr<MapLayer>, 2> _layers;

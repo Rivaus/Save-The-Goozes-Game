@@ -13,6 +13,17 @@ void Player::addUI(UserInterface* ui) {
 	_ui = ui;
 }
 
+void Player::setChoix(Choix choix) {
+	switch (choix) {
+	case Choix::Slide:
+		isSliding = true;
+		break;
+	case Choix::Confus:
+		isConfused = true;
+		break;
+	}
+
+}
 void Player::update(float deltaTime) {
 
 	if (isDead) {

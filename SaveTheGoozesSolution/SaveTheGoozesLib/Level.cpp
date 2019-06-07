@@ -37,12 +37,14 @@ Level::Level(std::string const& name, std::string const& mapPath, std::string co
 	player = playerPtr.get();
 	_characters.push_back(std::move(playerPtr));
 
-	//On charge l'oi
+	//On charge l'oie
 	_characters.push_back(std::make_unique<Gooze>(0, 400, 1, _world, 206, 200, 0, "Gooze", GoozePower::Invincible, 600, 900));
 
 	//On initialise les ennemis
 	initEnemies(enemiesFilePath);
-	initGui();
+
+	//On initialise l'ui
+	initGui(player);
 
 	_view.zoom(4);
 }
@@ -102,8 +104,8 @@ void Level::initEnemies(std::string const& enemiesFilePath) {
 	file.close();
 }
 
-void Level::initGui() {
-	_gui.init(); //pour la fonction sert a rien mais on verra apres
+void Level::initGui(Player* playerPtr) {
+	_gui.init(playerPtr);
 	_gui.initChoix();
 	player->addUI(&_gui);
 }
