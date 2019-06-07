@@ -7,14 +7,6 @@
 
 std::unique_ptr<AssetManager> AssetManager::_instance;
 
-AssetManager* AssetManager::getInstance() {
-	if (!_instance) {
-		_instance = std::make_unique <AssetManager>();
-	}
-	return _instance.get();
-}
-
-
 void AssetManager::loadTexture(std::string const& textureName, std::string const& texturePath) {
 	auto texture = std::make_unique<sf::Texture>();
 	assert(texture->loadFromFile(texturePath) == true);

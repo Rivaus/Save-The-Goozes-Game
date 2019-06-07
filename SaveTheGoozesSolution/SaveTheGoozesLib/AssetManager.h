@@ -14,7 +14,13 @@ private:
 	std::unordered_map <std::string, std::unique_ptr<sf::Texture>> _textures;
 
 public:
-	static AssetManager* getInstance();
+	static AssetManager* getInstance() {
+		static auto _instance = std::make_unique<AssetManager>();
+		return _instance.get();
+	}
+
+
+	AssetManager() { std::cout << "Je crée un asset Manager" << std::endl; }
 
 	sf::Texture* getTexture(std::string const& textureName);
 
