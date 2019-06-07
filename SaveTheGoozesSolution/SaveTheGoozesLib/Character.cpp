@@ -24,7 +24,7 @@ Character::Character(float speed, int pv,int damage, b2World& world, int boxWidt
 	b2PolygonShape shape;
 	shape.SetAsBox(boxWidth / 2, boxHeight / 2);
 	fixDef.shape = &shape;
-	fixDef.density = .03;
+	fixDef.density = .5;
 	body->CreateFixture(&fixDef);
 	body->SetUserData(this);
 }

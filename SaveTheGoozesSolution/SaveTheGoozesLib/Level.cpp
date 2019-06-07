@@ -41,7 +41,7 @@ Level::Level(std::string const& name, std::string const& mapPath, std::string co
 	initEnemies(enemiesFilePath);
 	initGui();
 
-	_view.zoom(4);
+	//_view.zoom(4);
 }
 
 
@@ -101,6 +101,7 @@ void Level::initEnemies(std::string const& enemiesFilePath) {
 
 void Level::initGui() {
 	_gui.init(); //pour la fonction sert a rien mais on verra apres
+	_gui.initChoix();
 	player->addUI(&_gui);
 }
 
@@ -124,7 +125,6 @@ void Level::plays() {
 		_layers[1]->update(duration);
 		update(deltaTime);
 
-		_gui.initChoix();
 		_window.clear();
 		_window.draw(*_layers[0]);
 		_window.draw(*_layers[1]);
