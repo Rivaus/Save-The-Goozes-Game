@@ -5,6 +5,11 @@
 
 #include <thread>
 
+enum class Choix {
+	Slide,
+	Confus
+};
+
 class Player : public Character
 {
 public:
@@ -15,6 +20,7 @@ public:
 	void draw(sf::RenderWindow& window) const override;
 
 	void addUI(UserInterface* ui);
+	void setChoix(Choix choix);
 	void takeDamage(int damage);
 
 	void attack();

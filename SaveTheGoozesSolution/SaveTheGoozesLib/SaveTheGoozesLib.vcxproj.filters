@@ -48,9 +48,6 @@
     <ClInclude Include="UserInterface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Event.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Gooze.h">
       <Filter>Header Files</Filter>
     </ClInclude>

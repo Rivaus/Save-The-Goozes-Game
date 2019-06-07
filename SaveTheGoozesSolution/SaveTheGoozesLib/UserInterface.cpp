@@ -8,18 +8,27 @@ UserInterface::UserInterface(sf::RenderWindow& window):
 }
 
 void UserInterface::initChoix() {
+	int tailleX = 200;
+	int tailleY = 200;
+	int positionX = 200;
+	int positionY = 200;
+	int offsetX = 10;
+
 	auto choix = tgui::Button::create();
-	choix->setText("Slide on your life like a master");
-	choix->setPosition(100, 100);
-	choix->setSize(100, 100);
-	choix->connect("pressed", [=]() { _gui.remove(choix); std::cout << "Music is my medecine" << std::endl; });
+	choix->setText("Slide on your life \n like a master");
+	choix->setPosition(positionX, positionY);
+	choix->setSize(tailleX, tailleY);
+	choix->setTextSize(15);
+	choix->connect("pressed", [=]() { _gui.remove(choix); std::cout << "Music is my medecine" << std::endl;  });
 	_gui.add(choix);
 
+	positionX += tailleX + offsetX;
 
 	auto choix2 = tgui::Button::create();
-	choix2->setText("Hit your head with your strength");
-	choix2->setPosition(300, 100);
-	choix2->setSize(100, 100);
+	choix2->setText("Hit your head \n with your strength");
+	choix2->setPosition(positionX, positionY);
+	choix2->setSize(tailleX, tailleY);
+	choix2->setTextSize(15);
 	choix2->connect("pressed", [=]() { _gui.remove(choix2); std::cout << "I pledge my allegiance, to rythm and sound" << std::endl; });
 	_gui.add(choix2);
 }
@@ -69,14 +78,14 @@ void UserInterface::onNotify(Events event) {
 
 void UserInterface::handleEvents(sf::Event event) {
 	bool retBool = _gui.handleEvent(event);
-	if (retBool&&event.type==9) {
+	/*if (retBool&&event.type==9) {
 		std::cout << "l'event MousePressed a ete consomme : x = "<< event.mouseButton.x <<", y = "<< event.mouseButton.y <<std::endl;
 		if (event.mouseButton.x > 100 && event.mouseButton.x < 200 && event.mouseButton.y>100 && event.mouseButton.y < 200) {
 			std::cout << "le choix 1 est cliquey" << std::endl;
 		}else if (event.mouseButton.x > 300 && event.mouseButton.x < 400 && event.mouseButton.y>100 && event.mouseButton.y < 200) {
 			std::cout << "le choix 2 est cliquey" << std::endl;
 		}
-	}
+	}*/
 }
 
 void UserInterface::init() {
