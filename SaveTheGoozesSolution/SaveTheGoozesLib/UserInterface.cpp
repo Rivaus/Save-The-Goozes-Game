@@ -9,7 +9,7 @@ UserInterface::UserInterface(sf::RenderWindow& window):
 
 void UserInterface::initChoix() {
 	auto choix = tgui::Button::create();
-	choix->setText("Choix 1");
+	choix->setText("Slide on your life like a master");
 	choix->setPosition(100, 100);
 	choix->setSize(100, 100);
 	choix->connect("pressed", [=]() { _gui.remove(choix); std::cout << "Music is my medecine" << std::endl; });
@@ -17,10 +17,10 @@ void UserInterface::initChoix() {
 
 
 	auto choix2 = tgui::Button::create();
-	choix2->setText("Choix 2");
+	choix2->setText("Hit your head with your strength");
 	choix2->setPosition(300, 100);
 	choix2->setSize(100, 100);
-	choix2->connect("pressed", [=]() { _gui.remove(choix); std::cout << "Music is my medecine" << std::endl; });
+	choix2->connect("pressed", [=]() { _gui.remove(choix2); std::cout << "I pledge my allegiance, to rythm and sound" << std::endl; });
 	_gui.add(choix2);
 }
 
