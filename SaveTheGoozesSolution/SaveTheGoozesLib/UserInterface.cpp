@@ -20,10 +20,7 @@ void UserInterface::initChoix() {
 	choix->setPosition(positionX, positionY);
 	choix->setSize(tailleX, tailleY);
 	choix->setTextSize(15);
-	choix->connect("pressed", [=]() { _gui.remove(choix); std::cout << "Music is my medecine" << std::endl; 
-	_player->setChoix(Choix::Slide); });
-	_gui.add(choix);
-
+	
 	positionX += tailleX + offsetX;
 
 	auto choix2 = tgui::Button::create();
@@ -31,8 +28,13 @@ void UserInterface::initChoix() {
 	choix2->setPosition(positionX, positionY);
 	choix2->setSize(tailleX, tailleY);
 	choix2->setTextSize(15);
-	choix2->connect("pressed", [=]() { _gui.remove(choix2); std::cout << "I pledge my allegiance, to rythm and sound" << std::endl;
+
+	choix->connect("pressed", [=]() { _gui.remove(choix); _gui.remove(choix2); std::cout << "Music is my medecine" << std::endl;
+	_player->setChoix(Choix::Slide); });
+	choix2->connect("pressed", [=]() {_gui.remove(choix); _gui.remove(choix2); std::cout << "I pledge my allegiance, to rythm and sound" << std::endl;
 	_player->setChoix(Choix::Confus); });
+
+	_gui.add(choix);
 	_gui.add(choix2);
 }
 
