@@ -22,7 +22,7 @@ Level::Level(std::string const& name, std::string const& mapPath, std::string co
 	_window(window), _clock(),
 	_view(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(window.getSize().x, window.getSize().y)),
 	_characters(),
-	_contactListener(_world),
+	_contactListener(),
 	_gui(window)
 {
 	// On charge la TiledMap

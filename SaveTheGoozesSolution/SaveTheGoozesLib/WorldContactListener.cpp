@@ -6,8 +6,6 @@
 #include "Gooze.h"
 
 
-WorldContactListener::WorldContactListener(b2World& world) : world(world) {}
-
 void WorldContactListener::BeginContact(b2Contact* contact) {
 	Character* bodyUserDataA = (Character*) contact->GetFixtureA()->GetBody()->GetUserData();
 	Character* bodyuserDataB = (Character *) contact->GetFixtureB()->GetBody()->GetUserData();
