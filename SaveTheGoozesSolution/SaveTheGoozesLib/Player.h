@@ -21,14 +21,12 @@ public:
 	void addUI(UserInterface* ui);
 	void setChoix(Choix choix);
 	void takeDamage(int damage);
-
-	void attack();
-
 	void findGooze(GoozePower power);
 
 private :
 	void handleInput(float deltaTime);
 	void move(float moX, float movY, float deltaTime);
+	void attack();
 
 private :
 	bool isAttacking = false;
