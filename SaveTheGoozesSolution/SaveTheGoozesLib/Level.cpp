@@ -1,5 +1,7 @@
 #include "pch.h"
 #include "Level.h"
+#include "Ennemy.h"
+#include "Gooze.h"
 
 #include <SFML/Graphics.hpp>
 #include <Box2D/Box2D.h>
@@ -33,6 +35,7 @@ Level::Level(std::string const& name, std::string const& mapPath, std::string co
 
 	initPhysics(map);
 
+	//on crée le joueur
 	auto playerPtr = std::make_unique<Player>(40.0f, 3, 1, _world, 134, 97, 32, "Alfonso");
 	player = playerPtr.get();
 	_characters.push_back(std::move(playerPtr));
@@ -153,4 +156,15 @@ void Level::update(float deltaTime) {
 	}
 	_view.setCenter(player->getPosition());
 	_window.setView(_view);
+}
+
+bool Level::invariant() {
+	if (!player) {
+		return false;
+	}
+	else if(!(_layers[0]&&_layers[1])){
+		return false;
+	}
+
+	return true;
 }
