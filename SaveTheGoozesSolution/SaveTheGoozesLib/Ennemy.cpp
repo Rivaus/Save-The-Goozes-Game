@@ -10,6 +10,9 @@ Ennemy::Ennemy(float speed, int pv, int damage, b2World& world, int boxWidth, in
 	indexWaypoint = 0;
 }
 
+/*
+Ajoute un lieu de passage dans la ronde de l'ennemi.
+*/
 void Ennemy::addWaypoint(sf::Vector2f const& waypoint) {
 	waypoints.push_back(waypoint);
 }

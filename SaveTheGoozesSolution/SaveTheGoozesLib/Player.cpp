@@ -13,6 +13,9 @@ void Player::addUI(UserInterface* ui) {
 	_ui = ui;
 }
 
+/*
+Initialise les mallus du perosnnage.
+*/
 void Player::setChoix(Choix choix) {
 	switch (choix) {
 	case Choix::Slide:

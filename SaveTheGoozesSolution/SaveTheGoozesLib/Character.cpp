@@ -57,6 +57,11 @@ int Character::getDamage() {
 	return damage;
 }
 
+
+/*
+Le character reçoit des dégats d'une valeur @damage. Si le personnage est touchable (i.e. canBeHit = true)
+renvoie true pour signifier qu'il faut mettre à jour l'UI.
+*/
 bool Character::takeDamage(int damage) {
 	bool updateUI = false;
 	if (canBeHit) {
@@ -75,6 +80,10 @@ bool Character::takeDamage(int damage) {
 	return updateUI;
 }
 
+/*
+Fonction statique qui crée un thread permettant d'attendre @waitingTime
+avant de rendre le personnage à nouveau touchable et lui remettre sa texture "normale".
+*/
 void Character::waitForBeingHit(Character* player, int waitingTime) {
 	std::this_thread::sleep_for(std::chrono::seconds(waitingTime));
 	player->canBeHit = true;
