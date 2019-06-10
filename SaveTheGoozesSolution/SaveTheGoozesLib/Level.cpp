@@ -49,7 +49,7 @@ Level::Level(std::string const& name, std::string const& mapPath, std::string co
 	//On initialise l'ui
 	initGui(player);
 
-	//_view.zoom(6);
+	//_view.zoom(7);
 }
 
 
