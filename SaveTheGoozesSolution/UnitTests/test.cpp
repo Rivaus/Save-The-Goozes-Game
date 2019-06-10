@@ -19,17 +19,12 @@ TEST(TestCaseName, TestName) {
 
 }
 
-TEST(TestUI, TestinitChoix) {
-	
-
-	EXPECT_EQ(1, 1);
-	EXPECT_TRUE(true);
-}
 
 
 
 
-TEST(TestConstructeurLevel, Test1) {
+
+TEST(TestLevel, TestConstructeur) {
 	sf::RenderWindow window(sf::VideoMode(1200, 1200), "SFML works!");
 	auto assetManager = AssetManager::getInstance();
 	assetManager->loadTexture("Alfonso", "../Game/Assets/Sprites/Alfonso.png");
@@ -42,4 +37,81 @@ TEST(TestConstructeurLevel, Test1) {
 	Level levelTest("test","../Game/Assets/Tiled_Map/map_test01.tmx","../Game/ennemies_level01.json",window);
 	EXPECT_TRUE(levelTest.invariant());
 	//EXPECT_TRUE(true);
+}
+
+TEST(TestUI, TestinitChoix) {
+	sf::RenderWindow window(sf::VideoMode(1200, 1200), "SFML works!");
+	UserInterface gui(window);
+	auto assetManager = AssetManager::getInstance();
+	assetManager->loadTexture("Coeur", "../Game/Assets/UI/coeur.png");
+	gui.initChoix();
+
+	EXPECT_TRUE(gui.invariant());
+}
+
+TEST(TestUI, Testinit) {
+	sf::RenderWindow window(sf::VideoMode(1200, 1200), "SFML works!");
+	UserInterface gui(window);
+	auto assetManager = AssetManager::getInstance();
+	assetManager->loadTexture("Alfonso", "../Game/Assets/Sprites/Alfonso.png");
+	assetManager->loadTexture("Coeur", "../Game/Assets/UI/coeur.png");
+	b2World world(b2Vec2{ 0, 0 });
+	auto playerPtr = std::make_unique<Player>(40.0f, 3, 1, world, 134, 97, 32, "Alfonso", 512, 512);
+
+	gui.init(playerPtr.get());
+
+	EXPECT_TRUE(gui.invariant());
+}
+
+TEST(TestUI, TestPerdUnCoeur) {
+	sf::RenderWindow window(sf::VideoMode(1200, 1200), "SFML works!");
+	UserInterface gui(window);
+	auto assetManager = AssetManager::getInstance();
+	assetManager->loadTexture("Alfonso", "../Game/Assets/Sprites/Alfonso.png");
+	assetManager->loadTexture("Coeur", "../Game/Assets/UI/coeur.png");
+	b2World world(b2Vec2{ 0, 0 });
+	auto playerPtr = std::make_unique<Player>(40.0f, 3, 1, world, 134, 97, 32, "Alfonso", 512, 512);
+
+	gui.init(playerPtr.get());
+	gui.initChoix();
+	gui.onNotify(Events::PlayerTakeDamage);
+
+	EXPECT_TRUE(gui.invariant());
+}
+
+
+TEST(TestUI, TestPerd3Coeur) {
+	sf::RenderWindow window(sf::VideoMode(1200, 1200), "SFML works!");
+	UserInterface gui(window);
+	auto assetManager = AssetManager::getInstance();
+	assetManager->loadTexture("Alfonso", "../Game/Assets/Sprites/Alfonso.png");
+	assetManager->loadTexture("Coeur", "../Game/Assets/UI/coeur.png");
+	b2World world(b2Vec2{ 0, 0 });
+	auto playerPtr = std::make_unique<Player>(40.0f, 3, 1, world, 134, 97, 32, "Alfonso", 512, 512);
+
+	gui.init(playerPtr.get());
+	gui.initChoix();
+	gui.onNotify(Events::PlayerTakeDamage);
+	gui.onNotify(Events::PlayerTakeDamage);
+	gui.onNotify(Events::PlayerTakeDamage);
+
+	EXPECT_TRUE(gui.invariant());
+}
+
+
+TEST(TestUI, TestPlayerDied) {
+	sf::RenderWindow window(sf::VideoMode(1200, 1200), "SFML works!");
+	UserInterface gui(window);
+	auto assetManager = AssetManager::getInstance();
+	assetManager->loadTexture("Alfonso", "../Game/Assets/Sprites/Alfonso.png");
+	assetManager->loadTexture("Coeur", "../Game/Assets/UI/coeur.png");
+	b2World world(b2Vec2{ 0, 0 });
+	auto playerPtr = std::make_unique<Player>(40.0f, 3, 1, world, 134, 97, 32, "Alfonso", 512, 512);
+
+	gui.init(playerPtr.get());
+	gui.initChoix();
+	gui.onNotify(Events::PlayerDied);
+
+
+	EXPECT_TRUE(gui.invariant());
 }
