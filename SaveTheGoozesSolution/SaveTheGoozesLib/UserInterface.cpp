@@ -2,12 +2,13 @@
 #include "UserInterface.h"
 #include "Player.h"
 
-
+//constructeur de Userinterface
 UserInterface::UserInterface(sf::RenderWindow& window):
 	_gui(window)
 {
 }
 
+//initialisation des choix
 void UserInterface::initChoix() {
 	int tailleX = 200;
 	int tailleY = 200;
@@ -15,29 +16,36 @@ void UserInterface::initChoix() {
 	int positionY = 200;
 	int offsetX = 10;
 
+	//creation du premier bouton
 	auto choix = tgui::Button::create();
 	choix->setText("Slide on your life \n like a master");
 	choix->setPosition(positionX, positionY);
 	choix->setSize(tailleX, tailleY);
 	choix->setTextSize(15);
 	
+	//pour la creation du deuxieme bouton on se decale sur l'axe X
 	positionX += tailleX + offsetX;
 
+	//creation du deuxieme bouton, on aurais aussi pu copier le premier et changer son texte et sa position
 	auto choix2 = tgui::Button::create();
 	choix2->setText("Hit your head \n with your strength");
 	choix2->setPosition(positionX, positionY);
 	choix2->setSize(tailleX, tailleY);
 	choix2->setTextSize(15);
 
+	//On associe l'action de presser l'un des deux boutons au choix dans le jeu, et on fait disparaitre les 2 boutons
 	choix->connect("pressed", [=]() { _gui.remove(choix); _gui.remove(choix2); std::cout << "Music is my medecine" << std::endl;
 	_player->setChoix(Choix::Slide); });
 	choix2->connect("pressed", [=]() {_gui.remove(choix); _gui.remove(choix2); std::cout << "I pledge my allegiance, to rythm and sound" << std::endl;
 	_player->setChoix(Choix::Confus); });
 
+	//on ajoute les deux boutons a l'UI
 	_gui.add(choix);
 	_gui.add(choix2);
 }
 
+//fonction privée associée a l'evenement "le joueur perd une vie"
+//on fait disparaitre le coeur le plus a droite et on increment le compteur de vie perdu
 void UserInterface::perdUneVie() {
 	for (int i = nbViesPerdues; i >= 0;i--) {	
 		_gui.remove(_viesJoueur[2-i]);
@@ -45,6 +53,8 @@ void UserInterface::perdUneVie() {
 	nbViesPerdues++;
 }
 
+//fonction privée associée a l'évenement "le joueur meurt et ressucite"
+//on fait réapparaitre tout ses coeurs et on ré-initilise le compteur de vie perdues
 void UserInterface::ressucite(){
 	nbViesPerdues = 0;
 	for (auto coeur : _viesJoueur) {
@@ -52,11 +62,13 @@ void UserInterface::ressucite(){
 	}
 }
 
-
+//focntion pour affcher l'ui
 void UserInterface::draw() {
 	_gui.draw();
 }
 
+//n'est pas utiliser car nous utilisons pas les evenements SFML
+//permet de gerer les evenements 
 void UserInterface::onNotify(sf::Event event) {
 	switch (event.type)
 	{
@@ -68,6 +80,7 @@ void UserInterface::onNotify(sf::Event event) {
 	}
 }
 
+//permet de gerer les events "perd une vie" et "meurt et ressucite"
 void UserInterface::onNotify(Events event) {
 	switch (event)
 	{
@@ -81,6 +94,8 @@ void UserInterface::onNotify(Events event) {
 	_gui.draw();
 }
 
+//permet de gerer les evenements sfml comme "on clique avec la souris sur un bouton"
+//transmet l'evenement aux boutons de l'UI
 void UserInterface::handleEvents(sf::Event event) {
 	bool retBool = _gui.handleEvent(event);
 	/*if (retBool&&event.type==9) {
@@ -93,6 +108,7 @@ void UserInterface::handleEvents(sf::Event event) {
 	}*/
 }
 
+//fonction pour initiliser l'UI en jeu faisant apparaitre la vie du joueurs et un texte precisant son objectif
 void UserInterface::init(Player *player) {
 	float tailleX = 100.0f;
 	float tailleY = 100.0f;
@@ -112,6 +128,7 @@ void UserInterface::init(Player *player) {
 }
 
 //fonction utilisé dans l'initialisation uniquement
+//creer les coeurs de la vie du joueur
 tgui::Picture::Ptr UserInterface::createVie(float tailleX, float tailleY, float positionX, float positionY) {
 	sf::Texture texture = *AssetManager::getInstance()->getTexture("Coeur");
 	sf::Sprite  sprite;
@@ -131,6 +148,7 @@ tgui::Picture::Ptr UserInterface::createVie(float tailleX, float tailleY, float 
 	return picture;
 }
 
+//n'est pas utilisé car ca se met a jour tout seul avec les events
 void UserInterface::update() {
 	_gui.draw();
 }

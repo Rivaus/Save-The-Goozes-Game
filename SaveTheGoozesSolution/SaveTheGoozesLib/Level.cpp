@@ -81,7 +81,7 @@ void Level::initPhysics(tmx::Map const& map) {
 	}
 }
 
-
+//initialise les ennemis (renard) a partir d'un json
 void Level::initEnemies(std::string const& enemiesFilePath) {
 	std::ifstream file(enemiesFilePath);
 	jsoncons::json levelInitializer = jsoncons::json::parse(file);
@@ -107,12 +107,14 @@ void Level::initEnemies(std::string const& enemiesFilePath) {
 	file.close();
 }
 
+//initialise l'UI
 void Level::initGui(Player* playerPtr) {
 	_gui.init(playerPtr);
 	_gui.initChoix();
 	player->addUI(&_gui);
 }
 
+//Boucle de jeu
 void Level::plays() {
 
 	while (_window.isOpen())

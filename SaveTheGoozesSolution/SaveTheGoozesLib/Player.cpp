@@ -9,12 +9,13 @@ Player::Player(float speed,int pv, int damage, b2World& world, int boxWidth, int
 {
 }
 
+//permet de lier l'UI et le Player, pour la gestion des events "perdre une vie" et "meurt et ressucite"
 void Player::addUI(UserInterface* ui) {
 	_ui = ui;
 }
 
 /*
-Initialise les mallus du perosnnage.
+Initialise les mallus du perosnnage lorsque l'utilisateur a cliqué sur l'un des boutons
 */
 void Player::setChoix(Choix choix) {
 	switch (choix) {
@@ -27,6 +28,8 @@ void Player::setChoix(Choix choix) {
 	}
 
 }
+
+//met a jour les parametres du joueurs
 void Player::update(float deltaTime) {
 
 	if (isDead) {
@@ -41,6 +44,7 @@ void Player::update(float deltaTime) {
 	line.setPosition(body->GetPosition().x + 100.f, body->GetPosition().y);
 }
 
+//gere les deplacements du joueur quand on appuie sur les fleches du clavier
 void Player::handleInput(float deltaTime) {
 	float directionX = 0;
 	float directionY = 0;
@@ -75,6 +79,7 @@ void Player::handleInput(float deltaTime) {
 	}
 }
 
+//deplace le joueur dans le monde
 void Player::move(float movX, float movY, float deltaTime) {
 	b2Vec2 direction{ movX, movY };
 	if (isConfused) {
@@ -86,6 +91,7 @@ void Player::move(float movX, float movY, float deltaTime) {
 	body->SetLinearVelocity(direction);
 }
 
+//gere l'attaque du joueur
 void Player::attack() {
 	b2Vec2 startPointForward { body->GetPosition().x + 100.f, body->GetPosition().y };
 	b2Vec2 endPointForward { body->GetPosition().x + 250.f, body->GetPosition().y };
@@ -98,11 +104,13 @@ void Player::attack() {
 	world.RayCast(&callback, startPointBehind, endPointBehind);
 }
 
+//gere l'affichage du joueur
 void Player::draw(sf::RenderWindow& window) const {
 	Character::draw(window);
 	window.draw(line);
 }
 
+//gere quand le joueur se prend des degats et notifie l'UI
 void Player::takeDamage(int damage) {
 	if (!isInvincible) {
 		if (Character::takeDamage(damage)) {
@@ -116,6 +124,7 @@ void Player::takeDamage(int damage) {
 	}
 }
 
+//gere quand le joueur attrape une oie
 void Player::findGooze(GoozePower power) {
 	switch (power) {
 	case GoozePower::Invincible:
