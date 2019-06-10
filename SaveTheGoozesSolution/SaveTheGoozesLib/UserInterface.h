@@ -28,14 +28,12 @@ public:
 	void draw();
 
 	void handleEvents(sf::Event event);
-	void onNotify(sf::Event event);
 	void onNotify(Events event);
 	void init(Player* player);
 	void initChoix();
-
+	bool invariant();
 	tgui::Picture::Ptr createVie(float tailleX, float tailleY, float positionX, float positionY);
-	
-	void update();
+
 
 private:
 	void perdUneVie();

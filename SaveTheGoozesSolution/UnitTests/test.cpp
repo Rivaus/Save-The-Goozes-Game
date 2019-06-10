@@ -19,14 +19,11 @@ TEST(TestCaseName, TestName) {
 
 }
 
-TEST(TestPlayer, Test1) {
-	b2World world(b2Vec2{ 0, 0 });
-	//Player player(5.0f,3,10,world,2,2,2);
+TEST(TestUI, TestinitChoix) {
+	
+
 	EXPECT_EQ(1, 1);
 	EXPECT_TRUE(true);
-
-
-
 }
 
 

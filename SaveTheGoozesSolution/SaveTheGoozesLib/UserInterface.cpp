@@ -70,18 +70,6 @@ void UserInterface::draw() {
 	_gui.draw();
 }
 
-//n'est pas utiliser car nous utilisons pas les evenements SFML
-//permet de gerer les evenements 
-void UserInterface::onNotify(sf::Event event) {
-	switch (event.type)
-	{
-	case 0:
-	{
-		perdUneVie();
-	}
-	break;
-	}
-}
 
 //permet de gerer les events "perd une vie" et "meurt et ressucite"
 void UserInterface::onNotify(Events event) {
@@ -101,14 +89,6 @@ void UserInterface::onNotify(Events event) {
 //transmet l'evenement aux boutons de l'UI
 void UserInterface::handleEvents(sf::Event event) {
 	bool retBool = _gui.handleEvent(event);
-	/*if (retBool&&event.type==9) {
-		std::cout << "l'event MousePressed a ete consomme : x = "<< event.mouseButton.x <<", y = "<< event.mouseButton.y <<std::endl;
-		if (event.mouseButton.x > 100 && event.mouseButton.x < 200 && event.mouseButton.y>100 && event.mouseButton.y < 200) {
-			std::cout << "le choix 1 est cliquey" << std::endl;
-		}else if (event.mouseButton.x > 300 && event.mouseButton.x < 400 && event.mouseButton.y>100 && event.mouseButton.y < 200) {
-			std::cout << "le choix 2 est cliquey" << std::endl;
-		}
-	}*/
 }
 
 //fonction pour initiliser l'UI en jeu faisant apparaitre la vie du joueurs et un texte precisant son objectif
@@ -151,7 +131,13 @@ tgui::Picture::Ptr UserInterface::createVie(float tailleX, float tailleY, float 
 	return picture;
 }
 
-//n'est pas utilisé car ca se met a jour tout seul avec les events
-void UserInterface::update() {
-	_gui.draw();
+
+bool UserInterface::invariant() {
+	if (nbViesPerdues>3) {
+		return false;
+	}
+	else if (!_player) {
+		return false;
+	}
+	return true;
 }
