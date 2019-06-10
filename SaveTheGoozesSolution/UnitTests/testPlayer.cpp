@@ -18,7 +18,6 @@ TEST(TestPlayer, TestTakeDamage) {
 	player.addUI(&ui);
 
 	player.takeDamage(3.f);
-	EXPECT_EQ(player.getPosition().x, 0);
-	EXPECT_EQ(player.getPosition().y, 0);
-	EXPECT_TRUE(true);
+	EXPECT_EQ(player.getPv(), 0);
+	EXPECT_TRUE(player.dead());
 }

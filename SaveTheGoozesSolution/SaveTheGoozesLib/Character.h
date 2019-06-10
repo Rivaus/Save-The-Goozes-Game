@@ -28,6 +28,9 @@ public:
 	bool takeDamage(int damage);
 	static void waitForBeingHit(Character* player, int waitingTime);
 
+	bool dead();
+	int getPv();
+
 private:
 	int damage;
 	sf::RectangleShape shape;

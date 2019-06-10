@@ -90,3 +90,11 @@ void Character::waitForBeingHit(Character* player, int waitingTime) {
 	player->sprite.setTexture(*player->textures[0]);
 	std::cout << "Je peux etre a nouveau touche." << std::endl;
 }
+
+bool Character::dead() {
+	return isDead;
+}
+
+int Character::getPv() {
+	return pv;
+}
