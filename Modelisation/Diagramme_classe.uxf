@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>6</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>486</x>
+      <y>456</y>
+      <w>204</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Player&gt;&gt;
+--
+- bool : isAttacking
+- bool : isConfused
+- bool : isSliding
+- bool : isInvincible
+- b2world&amp; : world
+--
++ Player(..)
+
++ findGooze(GoozePower power) : void
+- handleInput(float deltaTime) : void
+- move(float movX, float movY, float deltaTime) :void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>696</x>
+      <y>264</y>
+      <w>174</w>
+      <h>162</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Character&gt;&gt;
+--
+- int : damage
+- vector&lt;Textures*&gt; textures
+# Sprite : sprite
+# b2dBody* : body
+# int : pv
+# float : speed
+--
++ Character(..)
+
++ update(float deltaTime) : void
++ draw(RenderWindow window) : void
+
++ takeDamage(int damage) : void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>588</x>
+      <y>420</y>
+      <w>156</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>240.0;10.0;240.0;40.0;10.0;40.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>708</x>
+      <y>456</y>
+      <w>156</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Ennemy&gt;&gt;
+--
+- vector&lt;Vector2f&gt; : waypoints
+- int : indexWaypoint
+--
++ Ennemy(..)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>780</x>
+      <y>420</y>
+      <w>18</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>876</x>
+      <y>456</y>
+      <w>156</w>
+      <h>78</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Gooze&gt;&gt;
+--
+- GoozePower _power
+- bool : isFound
+--
++ Gooze(..)
+
++ found() : void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>816</x>
+      <y>420</y>
+      <w>150</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;40.0;230.0;40.0;230.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>450</x>
+      <y>210</y>
+      <w>186</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Level&gt;&gt;
+--
+- array&lt;unique_ptr&lt;MapLayer&gt;, 2&gt; : _layers;
+- string : _name;
+- b2world : world
+- RenderWindow&amp; : _window
+- View : _view
+- Clock : _clock;
+--
++ Character(..)
+
++ plays() : void
++ update(Time duration) : void
++ draw(RenderWindow window) : void
++ invariant : bool
+- initPhysics(Map map) : void
+- initEnemies(string enemiesFilePath) : void
+- initGui(Player* player)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>630</x>
+      <y>300</y>
+      <w>78</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;110.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>138</x>
+      <y>204</y>
+      <w>258</w>
+      <h>228</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;UserInterface&gt;&gt;
+--
+- tgui::Gui : _gui
+- Player* : _player;
+- vector&lt;tgui::Picture::Ptr&gt; : _viesJoueur;
+- int : nbViesPerdues = 0;
+--
++ UserInterface(sf::RenderWindow&amp; window)
+
++ update() : void
++ draw() : void
+
++ handleEvents(sf::Event event) : void 
++ onNotify(sf::Event event) : void 
++ onNotify(Events event) : void
++ init(Player* player) : void
++ initChoix() : void
++ createVie(float tailleX, float tailleY, float positionX, float positionY):
+tgui::Picture::Ptr
+
+- perdUneVie() : void
+- ressucite() : void
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>390</x>
+      <y>318</y>
+      <w>108</w>
+      <h>192</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>160.0;300.0;40.0;300.0;40.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>696</x>
+      <y>138</y>
+      <w>282</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;AssetManager&gt;&gt;
+--
+_ - ClassAttribute unique_ptr&lt;AssetManager&gt;_ : _instance;
+- unordered_map &lt;string, unique_ptr&lt;Texture&gt;&gt; : _textures;
+
+--
+_ClassFunction_ getInstance() : AssetManager*
++ getTexture(string&amp; textureName) : Texture*
++ loadTexture(string&amp; textureName, string&amp; texturePath) : void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
