@@ -93,6 +93,7 @@ void Player::move(float movX, float movY, float deltaTime) {
 
 //gere l'attaque du joueur
 void Player::attack() {
+	// On crée des rayons lorsque l'on attacke à gauche et à droite du joueur pour voir si l'on tape un ennemi
 	b2Vec2 startPointForward { body->GetPosition().x + 100.f, body->GetPosition().y };
 	b2Vec2 endPointForward { body->GetPosition().x + 250.f, body->GetPosition().y };
 
@@ -100,6 +101,8 @@ void Player::attack() {
 	b2Vec2 endPointBehind{ body->GetPosition().x - 250.f, body->GetPosition().y };
 
 	RaycastCallback callback(this);
+
+	// On lance les rayons
 	world.RayCast(&callback, startPointForward, endPointForward);
 	world.RayCast(&callback, startPointBehind, endPointBehind);
 }
