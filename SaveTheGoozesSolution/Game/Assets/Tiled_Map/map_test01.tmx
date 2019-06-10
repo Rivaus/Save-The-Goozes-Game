@@ -83,11 +83,11 @@
   <object id="1" x="909" y="491.333" width="101" height="136.667"/>
   <object id="2" x="1423" y="616.333" width="111" height="131.667"/>
   <object id="3" x="1941" y="664.333" width="85" height="62.6667"/>
-  <object id="4" x="2417" y="383" width="156" height="633"/>
+  <object id="4" x="2417" y="383" width="156" height="621"/>
   <object id="5" x="2971" y="1124.67" width="88" height="136.333"/>
   <object id="6" x="3220" y="911.667" width="85" height="69.3333"/>
   <object id="7" x="3341" y="636.333" width="99" height="123.667"/>
-  <object id="8" x="2555" y="1282" width="19" height="514"/>
+  <object id="8" x="2555" y="1290" width="19" height="506"/>
   <object id="9" x="2574" y="1777" width="128" height="19"/>
   <object id="10" x="2702" y="1618" width="111" height="156"/>
   <object id="11" x="2687" y="1797" width="16" height="123"/>
@@ -127,17 +127,17 @@
   <object id="46" x="1792.67" y="1778" width="508" height="10.6667"/>
   <object id="47" x="2290" y="1648.67" width="10" height="130"/>
   <object id="48" x="2300" y="1647.33" width="132.667" height="14"/>
-  <object id="49" x="2418.67" y="1280" width="12" height="364.667"/>
-  <object id="50" x="2431.33" y="1279.33" width="122.667" height="14"/>
+  <object id="49" x="2418.67" y="1288" width="12" height="356.667"/>
+  <object id="50" x="2433.33" y="1288.66" width="122.667" height="14"/>
   <object id="51" x="1801.33" y="1348.67" width="110" height="165.333"/>
-  <object id="52" x="1430" y="1628" width="96.6667" height="144.666"/>
+  <object id="52" x="1436" y="1628" width="78" height="144.666"/>
   <object id="53" x="1174.67" y="1940" width="82.6667" height="68"/>
   <object id="54" x="1047" y="2405.67" width="96" height="137.333"/>
   <object id="55" x="532" y="2567.5" width="82" height="82"/>
   <object id="56" x="524" y="2264" width="101.5" height="158.5"/>
-  <object id="58" x="526" y="1773" width="107" height="135"/>
+  <object id="58" x="538.667" y="1773" width="65.6667" height="135"/>
   <object id="59" x="776" y="1072" width="113" height="197"/>
-  <object id="60" x="656" y="1444.33" width="100" height="86.6667"/>
+  <object id="60" x="656" y="1444.33" width="87.3333" height="86.6667"/>
   <object id="61" x="1290" y="1438.67" width="108" height="79.3333"/>
   <object id="62" x="2058" y="927.333" width="104" height="83.6667"/>
   <object id="63" x="1937" y="1665" width="95" height="108"/>
