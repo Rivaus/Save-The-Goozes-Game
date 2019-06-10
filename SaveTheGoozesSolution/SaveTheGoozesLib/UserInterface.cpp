@@ -10,16 +10,17 @@ UserInterface::UserInterface(sf::RenderWindow& window):
 
 //initialisation des choix
 void UserInterface::initChoix() {
-	int tailleX = 400;
+	int tailleX = 600;
 	int tailleY = 600;
-	int positionX = 200;
+	int positionX = 30;
 	int positionY = 50;
 	int offsetX = 20;
-	int textSize = 30;
+	int textSize = 35;
+
 
 	//creation du premier bouton
 	auto choix = tgui::Button::create();
-	choix->setText("Slide on your life \n like a master");
+	choix->setText("J'ai envie de patiner aujourdhui \n et rien ne m'en empeche \n car je suis libre de faire  \n  ce qu'il me plait");
 	choix->setPosition(positionX, positionY);
 	choix->setSize(tailleX, tailleY);
 	choix->setTextSize(textSize);
@@ -30,7 +31,7 @@ void UserInterface::initChoix() {
 
 	//creation du deuxieme bouton, on aurais aussi pu copier le premier et changer son texte et sa position
 	auto choix2 = tgui::Button::create();
-	choix2->setText("Hit your head \n with your strength");
+	choix2->setText("Je vais tester ma force \n en me frappant la tete");
 	choix2->setPosition(positionX, positionY);
 	choix2->setSize(tailleX, tailleY);
 	choix2->setTextSize(textSize);

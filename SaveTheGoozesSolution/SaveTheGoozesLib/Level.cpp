@@ -36,7 +36,7 @@ Level::Level(std::string const& name, std::string const& mapPath, std::string co
 	initPhysics(map);
 
 	//on crée le joueur
-	auto playerPtr = std::make_unique<Player>(40.0f, 3, 1, _world, 134, 97, 32, "Alfonso", 512, 512);
+	auto playerPtr = std::make_unique<Player>(40.0f, 3, 1, _world, 134, 97, 32, "Alfonso", 512, 512);//512
 	player = playerPtr.get();
 	_characters.push_back(std::move(playerPtr));
 
@@ -49,7 +49,7 @@ Level::Level(std::string const& name, std::string const& mapPath, std::string co
 	//On initialise l'ui
 	initGui(player);
 
-	//_view.zoom(4);
+	//_view.zoom(6);
 }
 
 
