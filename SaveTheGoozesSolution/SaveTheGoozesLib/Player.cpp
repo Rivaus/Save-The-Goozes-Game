@@ -35,7 +35,7 @@ void Player::update(float deltaTime) {
 	if (isDead) {
 		pv = 3;
 		isDead = false;
-		body->SetTransform(b2Vec2{ .0f, .0f }, 0.0f);
+		body->SetTransform(b2Vec2{ 512.0f, 512.0f }, 0.0f);
 	}
 
 	handleInput(deltaTime);

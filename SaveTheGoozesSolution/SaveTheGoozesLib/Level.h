@@ -22,7 +22,8 @@ public:
 	Level(std::string const& name, std::string const& mapPath, std::string const& enemiesFilePath, sf::RenderWindow& window);
 
 	void plays();
-	void update(float deltaTime);
+	void update(sf::Time duration);
+	void draw();
 	bool invariant();
 
 

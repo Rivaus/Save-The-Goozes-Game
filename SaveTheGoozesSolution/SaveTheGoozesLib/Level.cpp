@@ -36,12 +36,12 @@ Level::Level(std::string const& name, std::string const& mapPath, std::string co
 	initPhysics(map);
 
 	//on crée le joueur
-	auto playerPtr = std::make_unique<Player>(40.0f, 3, 1, _world, 134, 97, 32, "Alfonso");
+	auto playerPtr = std::make_unique<Player>(40.0f, 3, 1, _world, 134, 97, 32, "Alfonso", 512, 512);
 	player = playerPtr.get();
 	_characters.push_back(std::move(playerPtr));
 
 	//On charge l'oie
-	_characters.push_back(std::make_unique<Gooze>(0, 400, 1, _world, 206, 200, 0, "Gooze", GoozePower::Invincible, 600, 900));
+	_characters.push_back(std::make_unique<Gooze>(0, 400, 1, _world, 206, 200, 0, "Gooze", GoozePower::Invincible, 3072, 3584));
 
 	//On initialise les ennemis
 	initEnemies(enemiesFilePath);
@@ -49,7 +49,7 @@ Level::Level(std::string const& name, std::string const& mapPath, std::string co
 	//On initialise l'ui
 	initGui(player);
 
-	_view.zoom(4);
+	//_view.zoom(4);
 }
 
 
@@ -130,34 +130,42 @@ void Level::plays() {
 		}
 
 		sf::Time duration = _clock.getElapsedTime();
-		float deltaTime = duration.asSeconds();
-		_layers[0]->update(duration);
-		_layers[1]->update(duration);
-		update(deltaTime);
+		
+		update(duration);
 
-		_window.clear();
-		_window.draw(*_layers[0]);
-		_window.draw(*_layers[1]);
-
-		/*std::sort(_characters.begin(), _characters.end(), [](auto& charA, auto& charB) {
-			return charA->getPosition().y < charB->getPosition().y;
-			});*/
-
-		for (auto const& c : _characters) {
-			c->draw(_window);
-		}
-		_gui.draw(); //draw l'ui
-		_window.display();
+		draw();
 	}
 }
 
-void Level::update(float deltaTime) {
-	_world.Step(1 / 60.f, 6, 2);
+void Level::update(sf::Time duration) {
+	float deltaTime = duration.asSeconds();
+
+	// On met à jour les calques de la carte
+	for (auto& layer : _layers) {
+		layer->update(duration);
+	}
+
+	//On met à jour la physique
+	_world.Step(deltaTime, 6, 2);
+
+	// On met à jour les personnages
 	for (auto& c : _characters) {
 		c->update(deltaTime);
 	}
 	_view.setCenter(player->getPosition());
 	_window.setView(_view);
+}
+
+void Level::draw() {
+	_window.clear(sf::Color(29, 125, 24));
+	_window.draw(*_layers[0]);
+	_window.draw(*_layers[1]);
+
+	for (auto const& c : _characters) {
+		c->draw(_window);
+	}
+	_gui.draw(); //draw l'ui
+	_window.display();
 }
 
 bool Level::invariant() {
