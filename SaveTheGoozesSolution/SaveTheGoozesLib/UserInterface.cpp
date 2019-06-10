@@ -10,18 +10,20 @@ UserInterface::UserInterface(sf::RenderWindow& window):
 
 //initialisation des choix
 void UserInterface::initChoix() {
-	int tailleX = 200;
-	int tailleY = 200;
+	int tailleX = 400;
+	int tailleY = 600;
 	int positionX = 200;
-	int positionY = 200;
-	int offsetX = 10;
+	int positionY = 50;
+	int offsetX = 20;
+	int textSize = 30;
 
 	//creation du premier bouton
 	auto choix = tgui::Button::create();
 	choix->setText("Slide on your life \n like a master");
 	choix->setPosition(positionX, positionY);
 	choix->setSize(tailleX, tailleY);
-	choix->setTextSize(15);
+	choix->setTextSize(textSize);
+	
 	
 	//pour la creation du deuxieme bouton on se decale sur l'axe X
 	positionX += tailleX + offsetX;
@@ -31,7 +33,7 @@ void UserInterface::initChoix() {
 	choix2->setText("Hit your head \n with your strength");
 	choix2->setPosition(positionX, positionY);
 	choix2->setSize(tailleX, tailleY);
-	choix2->setTextSize(15);
+	choix2->setTextSize(textSize);
 
 	//On associe l'action de presser l'un des deux boutons au choix dans le jeu, et on fait disparaitre les 2 boutons
 	choix->connect("pressed", [=]() { _gui.remove(choix); _gui.remove(choix2); std::cout << "Music is my medecine" << std::endl;

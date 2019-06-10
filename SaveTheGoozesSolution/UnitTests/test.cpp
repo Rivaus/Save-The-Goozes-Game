@@ -31,7 +31,6 @@ TEST(TestPlayer, Test1) {
 
 
 
-//ca compile pas et je sais pas pourquoi wouhou
 
 TEST(TestConstructeurLevel, Test1) {
 	sf::RenderWindow window(sf::VideoMode(1200, 1200), "SFML works!");
