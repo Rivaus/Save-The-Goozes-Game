@@ -5,7 +5,7 @@
 Player::Player(float speed,int pv, int damage, b2World& world, int boxWidth, int boxHeight, int boxOffset,
 		std::string textureName, float positionX , float positionY ):
 	Character(speed, pv, damage, world,boxWidth, boxWidth, boxOffset, textureName, positionX, positionY),
-	world(world), line(sf::Vector2f(150.f, 5.f))
+	world(world)
 {
 }
 
@@ -41,7 +41,6 @@ void Player::update(float deltaTime) {
 	handleInput(deltaTime);
 
 	Character::update(deltaTime);
-	line.setPosition(body->GetPosition().x + 100.f, body->GetPosition().y);
 }
 
 //gere les deplacements du joueur quand on appuie sur les fleches du clavier
@@ -93,24 +92,32 @@ void Player::move(float movX, float movY, float deltaTime) {
 
 //gere l'attaque du joueur
 void Player::attack() {
-	// On crée des rayons lorsque l'on attacke à gauche et à droite du joueur pour voir si l'on tape un ennemi
+	// On crée des rayons lorsque l'on attacke à gauche, à droite, en haut et en bas du joueur pour voir si l'on tape un ennemi
 	b2Vec2 startPointForward { body->GetPosition().x + 100.f, body->GetPosition().y };
 	b2Vec2 endPointForward { body->GetPosition().x + 250.f, body->GetPosition().y };
 
 	b2Vec2 startPointBehind{ body->GetPosition().x - 100.f, body->GetPosition().y };
 	b2Vec2 endPointBehind{ body->GetPosition().x - 250.f, body->GetPosition().y };
 
+	b2Vec2 startPointUp{ body->GetPosition().x, body->GetPosition().y + 75};
+	b2Vec2 endPointUp{ body->GetPosition().x, body->GetPosition().y + 150 };
+
+	b2Vec2 startPointDown{ body->GetPosition().x, body->GetPosition().y -100 };
+	b2Vec2 endPointDown{ body->GetPosition().x, body->GetPosition().y - 150 };
+
 	RaycastCallback callback(this);
 
 	// On lance les rayons
 	world.RayCast(&callback, startPointForward, endPointForward);
 	world.RayCast(&callback, startPointBehind, endPointBehind);
+	world.RayCast(&callback, startPointUp, endPointUp);
+	world.RayCast(&callback, startPointDown, endPointDown);
 }
 
 //gere l'affichage du joueur
 void Player::draw(sf::RenderWindow& window) const {
 	Character::draw(window);
-	window.draw(line);
+	//window.draw(line);
 }
 
 //gere quand le joueur se prend des degats et notifie l'UI
