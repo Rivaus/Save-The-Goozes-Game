@@ -41,7 +41,7 @@ Level::Level(std::string const& name, std::string const& mapPath, std::string co
 	_characters.push_back(std::move(playerPtr));
 
 	//On charge l'oie
-	_characters.push_back(std::make_unique<Gooze>(0, 400, 1, _world, 206, 200, 0, "Gooze", GoozePower::Invincible, 3072, 3584));
+	_characters.push_back(std::make_unique<Gooze>(0, 400, 1, _world, 206, 200, 0, "Gooze", GoozePower::Invincible, 1300, 1300));
 
 	//On initialise les ennemis
 	initEnemies(enemiesFilePath);
@@ -49,7 +49,7 @@ Level::Level(std::string const& name, std::string const& mapPath, std::string co
 	//On initialise l'ui
 	initGui(player);
 
-	//_view.zoom(7);
+	_view.zoom(7);
 }
 
 

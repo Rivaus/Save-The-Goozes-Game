@@ -139,6 +139,8 @@ void Player::findGooze(GoozePower power) {
 	switch (power) {
 	case GoozePower::Invincible:
 		isInvincible = true;
+		isSliding = false;
+		isConfused = false;
 		scale = 1.3f;
 		std::cout << "Je deviens invincible !" << std::endl;
 		sprite.setScale(sf::Vector2f{ scale, scale });
