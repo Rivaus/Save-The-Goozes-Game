@@ -21,7 +21,7 @@ void Ennemy::addWaypoint(sf::Vector2f const& waypoint) {
 void Ennemy::update(float deltaTime) {
 
 	if (isDead) {
-		body->SetTransform(b2Vec2{ .0f, .0f }, 0);
+		body->SetTransform(b2Vec2{ -400.0f, -400.0f }, 0);
 	}
 	//si on atteint le point visé
 	if (Utils::absoluteDistance(body->GetPosition(), waypoints[indexWaypoint]) < 5) {
